@@ -3,1366 +3,1403 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Robotics Mastery Portal | From Circuits to Humanoids</title>
+    <title>Alix Robotics Mastery Roadmap | From Circuits to Humanoids</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Clash Display for headings (geometric, editorial) + DM Mono for code/labels + Lora for body -->
+    <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <!-- Fallback if Clash Display isn't available via Google yet — use Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            /* Luxury Progression Palette */
-            --phase-1: #5A3966;
-            --phase-2: #2D325A;
-            --phase-3: #1E5478;
-            --phase-4: #236B50;
-            --phase-5: #C29B38;
-            --phase-6: #BD5B2A;
-            --phase-7: #9E1B22;
-            
-            /* Dark Mode (Default) */
-            --bg-primary: #121212;
-            --bg-secondary: #1a1a1a;
-            --bg-tertiary: #242424;
-            --bg-card: #1e1e1e;
-            --text-primary: #f0f0f0;
-            --text-secondary: #b0b0b0;
-            --text-muted: #707070;
-            --border-color: #333333;
-            --glow-intensity: 0.3;
-            --shadow-color: rgba(0, 0, 0, 0.5);
-            --hover-bg: rgba(255, 255, 255, 0.05);
+            /* Phase spectrum — deep to intense */
+            --phase-1: #6B3FA0;
+            --phase-2: #2B4A8C;
+            --phase-3: #1A6E8C;
+            --phase-4: #1A7A52;
+            --phase-5: #B8891A;
+            --phase-6: #C04A1E;
+            --phase-7: #A01828;
+
+            /* Dark theme (default) */
+            --bg-base:      #0C0C0F;
+            --bg-surface:   #131318;
+            --bg-raised:    #1A1A22;
+            --bg-card:      #1E1E28;
+            --bg-hover:     rgba(255,255,255,0.04);
+            --text-1:       #EEEEF2;
+            --text-2:       #9999AA;
+            --text-3:       #55556A;
+            --border:       rgba(255,255,255,0.08);
+            --border-mid:   rgba(255,255,255,0.12);
+            --grid-color:   rgba(255,255,255,0.035);
+            --shadow:       rgba(0,0,0,0.6);
+
+            /* Accent */
+            --accent:       #5B8CFF;
+            --accent-dim:   rgba(91,140,255,0.15);
+
+            --font-display: 'Outfit', 'Clash Display', sans-serif;
+            --font-body:    'Lora', Georgia, serif;
+            --font-mono:    'DM Mono', 'JetBrains Mono', monospace;
         }
-        
+
         [data-theme="light"] {
-            --bg-primary: #f8f9fa;
-            --bg-secondary: #ffffff;
-            --bg-tertiary: #e9ecef;
-            --bg-card: #ffffff;
-            --text-primary: #1a1a2e;
-            --text-secondary: #4a4a5a;
-            --text-muted: #6c757d;
-            --border-color: #dee2e6;
-            --glow-intensity: 0.15;
-            --shadow-color: rgba(0, 0, 0, 0.1);
-            --hover-bg: rgba(0, 0, 0, 0.03);
+            --bg-base:      #F4F4F7;
+            --bg-surface:   #FFFFFF;
+            --bg-raised:    #EBEBF0;
+            --bg-card:      #FFFFFF;
+            --bg-hover:     rgba(0,0,0,0.03);
+            --text-1:       #12121A;
+            --text-2:       #4A4A60;
+            --text-3:       #9090A8;
+            --border:       rgba(0,0,0,0.08);
+            --border-mid:   rgba(0,0,0,0.12);
+            --grid-color:   rgba(0,0,0,0.05);
+            --shadow:       rgba(0,0,0,0.12);
+            --accent:       #2D5FD4;
+            --accent-dim:   rgba(45,95,212,0.1);
         }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        /* ─── GRID BACKGROUND ─── */
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
+            font-family: var(--font-body);
+            background-color: var(--bg-base);
+            color: var(--text-1);
             min-height: 100vh;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: background-color 0.3s, color 0.3s;
             overflow-x: hidden;
+            position: relative;
         }
-        
-        /* Header & Navigation */
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 48px 48px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Subtle vignette over grid */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 0%, transparent 40%, var(--bg-base) 100%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Everything above the grid */
+        header, main, footer, .phase-nav { position: relative; z-index: 1; }
+
+        /* ─── HEADER ─── */
         .header {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 70px;
-            background: var(--bg-secondary);
-            border-bottom: 1px solid var(--border-color);
+            top: 0; left: 0; right: 0;
+            height: 66px;
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 0 2rem;
             z-index: 1000;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
         }
-        
+
+        /* Alix Logo */
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            font-weight: 700;
-            font-size: 1.25rem;
-            color: var(--text-primary);
+            gap: 0.6rem;
             text-decoration: none;
+            cursor: pointer;
         }
-        
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--phase-1), var(--phase-3));
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
+
+        .logo-img {
+            height: 34px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 0 8px rgba(91,140,255,0.25));
+            transition: filter 0.3s;
         }
-        
+
+        .logo:hover .logo-img {
+            filter: drop-shadow(0 0 14px rgba(91,140,255,0.5));
+        }
+
+        .logo-wordmark {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.05rem;
+            letter-spacing: 0.04em;
+            color: var(--text-1);
+            opacity: 0.85;
+        }
+
+        .logo-divider {
+            width: 1px;
+            height: 20px;
+            background: var(--border-mid);
+            margin: 0 0.2rem;
+        }
+
+        .logo-sub {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-3);
+        }
+
+        /* Nav */
         .nav-container {
             display: flex;
             align-items: center;
-            gap: 2rem;
+            gap: 1.5rem;
         }
-        
-        .nav-item {
-            position: relative;
-        }
-        
+
+        .nav-item { position: relative; }
+
         .nav-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.45rem;
+            padding: 0.45rem 0.9rem;
+            border-radius: 6px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            letter-spacing: 0.06em;
+            color: var(--text-2);
             cursor: pointer;
+            transition: color 0.2s, background 0.2s;
+            border: 1px solid transparent;
         }
-        
+
         .nav-link:hover {
-            color: var(--text-primary);
-            background: var(--hover-bg);
+            color: var(--text-1);
+            background: var(--bg-hover);
+            border-color: var(--border);
         }
-        
-        .nav-link.active {
-            color: var(--text-primary);
+
+        .nav-link i.chevron {
+            font-size: 0.6rem;
+            transition: transform 0.2s;
         }
-        
-        /* Theme Toggle - Robot Eye Style */
+
+        .nav-item:hover .nav-link .chevron,
+        .nav-link.menu-open .chevron { transform: rotate(180deg); }
+
+        /* Theme toggle */
         .theme-toggle {
-            position: relative;
-            width: 60px;
-            height: 32px;
-            background: var(--bg-tertiary);
-            border-radius: 16px;
+            width: 52px; height: 28px;
+            background: var(--bg-raised);
+            border: 1px solid var(--border-mid);
+            border-radius: 14px;
             cursor: pointer;
-            border: 2px solid var(--border-color);
-            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             padding: 2px;
+            transition: border-color 0.2s, box-shadow 0.2s;
         }
-        
+
         .theme-toggle:hover {
-            border-color: var(--phase-3);
-            box-shadow: 0 0 15px rgba(30, 84, 120, var(--glow-intensity));
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-dim);
         }
-        
-        [data-theme="dark"] .theme-toggle {
-            box-shadow: 0 0 20px rgba(90, 57, 102, 0.4), inset 0 0 10px rgba(90, 57, 102, 0.2);
-        }
-        
-        [data-theme="light"] .theme-toggle {
-            box-shadow: 3px 3px 8px var(--shadow-color), -3px -3px 8px rgba(255, 255, 255, 0.8);
-        }
-        
-        .theme-toggle-slider {
-            width: 24px;
-            height: 24px;
-            background: linear-gradient(135deg, var(--phase-1), var(--phase-3));
+
+        .toggle-knob {
+            width: 22px; height: 22px;
             border-radius: 50%;
-            transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            color: white;
+            background: linear-gradient(135deg, var(--phase-1), var(--accent));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.65rem; color: white;
+            transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
         }
-        
-        [data-theme="light"] .theme-toggle-slider {
-            transform: translateX(28px);
+
+        [data-theme="light"] .toggle-knob {
+            transform: translateX(24px);
             background: linear-gradient(135deg, var(--phase-5), var(--phase-6));
         }
-        
-        /* Mega Menu */
+
+        /* ─── MEGA MENU ─── */
         .mega-menu {
             position: absolute;
-            top: 100%;
+            top: calc(100% + 8px);
             left: 50%;
-            transform: translateX(-50%) translateY(-10px);
-            width: 800px;
-            max-width: 90vw;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 1.5rem;
+            transform: translateX(-50%) translateY(-6px);
+            width: 680px;
+            max-width: 92vw;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-mid);
+            border-radius: 14px;
+            padding: 1.25rem;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 20px 60px var(--shadow-color);
+            transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
+            box-shadow: 0 24px 64px var(--shadow);
             z-index: 999;
         }
-        
-        .nav-item:hover .mega-menu {
+
+        .nav-item:hover .mega-menu,
+        .mega-menu.open {
             opacity: 1;
             visibility: visible;
             transform: translateX(-50%) translateY(0);
         }
-        
-        .mega-menu-title {
-            font-size: 0.85rem;
-            font-weight: 600;
+
+        .mega-menu-label {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--border-color);
+            color: var(--text-3);
+            margin-bottom: 0.85rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 1px solid var(--border);
         }
-        
+
         .mega-menu-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 0.75rem;
+            gap: 0.4rem;
         }
-        
+
         .mega-menu-item {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            border-radius: 12px;
+            gap: 0.85rem;
+            padding: 0.75rem 0.9rem;
+            border-radius: 8px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: background 0.15s, border-color 0.15s;
             border: 1px solid transparent;
         }
-        
-        .mega-menu-item:hover {
-            background: var(--hover-bg);
-            transform: translateX(5px);
-        }
-        
-        .mega-menu-item.phase-1:hover { border-color: var(--phase-1); box-shadow: 0 0 20px rgba(90, 57, 102, var(--glow-intensity)); }
-        .mega-menu-item.phase-2:hover { border-color: var(--phase-2); box-shadow: 0 0 20px rgba(45, 50, 90, var(--glow-intensity)); }
-        .mega-menu-item.phase-3:hover { border-color: var(--phase-3); box-shadow: 0 0 20px rgba(30, 84, 120, var(--glow-intensity)); }
-        .mega-menu-item.phase-4:hover { border-color: var(--phase-4); box-shadow: 0 0 20px rgba(35, 107, 80, var(--glow-intensity)); }
-        .mega-menu-item.phase-5:hover { border-color: var(--phase-5); box-shadow: 0 0 20px rgba(194, 155, 56, var(--glow-intensity)); }
-        .mega-menu-item.phase-6:hover { border-color: var(--phase-6); box-shadow: 0 0 20px rgba(189, 91, 42, var(--glow-intensity)); }
-        .mega-menu-item.phase-7:hover { border-color: var(--phase-7); box-shadow: 0 0 20px rgba(158, 27, 34, var(--glow-intensity)); }
-        
-        .mega-menu-number {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.9rem;
+
+        .mega-menu-item:hover { background: var(--bg-hover); }
+        .mega-menu-item.ph-1:hover { border-color: rgba(107,63,160,0.35); }
+        .mega-menu-item.ph-2:hover { border-color: rgba(43,74,140,0.35); }
+        .mega-menu-item.ph-3:hover { border-color: rgba(26,110,140,0.35); }
+        .mega-menu-item.ph-4:hover { border-color: rgba(26,122,82,0.35); }
+        .mega-menu-item.ph-5:hover { border-color: rgba(184,137,26,0.35); }
+        .mega-menu-item.ph-6:hover { border-color: rgba(192,74,30,0.35); }
+        .mega-menu-item.ph-7:hover { border-color: rgba(160,24,40,0.35); }
+
+        .menu-badge {
+            width: 30px; height: 30px;
+            border-radius: 7px;
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 0.8rem;
             color: white;
             flex-shrink: 0;
         }
-        
-        .mega-menu-number.phase-1 { background: var(--phase-1); }
-        .mega-menu-number.phase-2 { background: var(--phase-2); }
-        .mega-menu-number.phase-3 { background: var(--phase-3); }
-        .mega-menu-number.phase-4 { background: var(--phase-4); }
-        .mega-menu-number.phase-5 { background: var(--phase-5); }
-        .mega-menu-number.phase-6 { background: var(--phase-6); }
-        .mega-menu-number.phase-7 { background: var(--phase-7); }
-        
-        .mega-menu-content {
-            flex: 1;
-        }
-        
-        .mega-menu-item-title {
+
+        .ph-1 .menu-badge { background: var(--phase-1); }
+        .ph-2 .menu-badge { background: var(--phase-2); }
+        .ph-3 .menu-badge { background: var(--phase-3); }
+        .ph-4 .menu-badge { background: var(--phase-4); }
+        .ph-5 .menu-badge { background: var(--phase-5); }
+        .ph-6 .menu-badge { background: var(--phase-6); }
+        .ph-7 .menu-badge { background: var(--phase-7); }
+
+        .menu-text-title {
+            font-family: var(--font-display);
             font-weight: 600;
-            font-size: 0.95rem;
-            color: var(--text-primary);
-            margin-bottom: 0.25rem;
+            font-size: 0.88rem;
+            color: var(--text-1);
+            line-height: 1.3;
         }
-        
-        .mega-menu-item-desc {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            line-height: 1.4;
+
+        .menu-text-sub {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            color: var(--text-3);
+            letter-spacing: 0.05em;
         }
-        
-        /* Main Content */
+
+        /* ─── MAIN CONTAINER ─── */
         .main-container {
-            margin-top: 70px;
-            min-height: calc(100vh - 70px);
-            position: relative;
+            margin-top: 66px;
+            min-height: calc(100vh - 66px);
         }
-        
-        /* Hero Section */
+
+        /* ─── HERO ─── */
         .hero {
-            padding: 4rem 2rem;
+            padding: 5rem 2rem 4rem;
             text-align: center;
-            background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border);
+            background: linear-gradient(180deg, var(--bg-surface) 0%, transparent 100%);
         }
-        
-        .hero-badge {
+
+        .hero-eyebrow {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: var(--bg-tertiary);
-            border-radius: 50px;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            border: 1px solid var(--border-color);
+            padding: 0.35rem 0.9rem;
+            background: var(--bg-raised);
+            border: 1px solid var(--border-mid);
+            border-radius: 100px;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-3);
+            margin-bottom: 1.75rem;
         }
-        
-        .hero-badge i {
-            color: var(--phase-5);
+
+        .hero-eyebrow span.dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--phase-5);
+            display: inline-block;
         }
-        
+
         .hero-title {
-            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5.5vw, 4rem);
             font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--phase-3) 100%);
+            line-height: 1.08;
+            letter-spacing: -0.03em;
+            color: var(--text-1);
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-title em {
+            font-style: normal;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--phase-3) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        
+
         .hero-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            line-height: 1.7;
+            font-family: var(--font-body);
+            font-size: 1.05rem;
+            font-style: italic;
+            color: var(--text-2);
+            max-width: 520px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.75;
         }
-        
+
         .hero-stats {
             display: flex;
             justify-content: center;
             gap: 3rem;
             flex-wrap: wrap;
         }
-        
-        .hero-stat {
-            text-align: center;
-        }
-        
+
         .hero-stat-value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--phase-3);
+            font-family: var(--font-display);
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--text-1);
+            letter-spacing: -0.04em;
+            line-height: 1;
         }
-        
+
         .hero-stat-label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            color: var(--text-3);
+            margin-top: 0.3rem;
         }
-        
-        /* Phase Navigation Pills */
+
+        /* ─── PROGRESS BAR ─── */
+        .progress-strip {
+            padding: 1rem 2rem;
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .progress-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .progress-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-3);
+            white-space: nowrap;
+        }
+
+        .progress-track {
+            flex: 1;
+            height: 4px;
+            background: var(--bg-raised);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--phase-4), var(--accent));
+            border-radius: 2px;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .progress-pct {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--phase-4);
+            white-space: nowrap;
+            min-width: 2.8rem;
+            text-align: right;
+        }
+
+        /* ─── PHASE NAV PILLS ─── */
         .phase-nav {
             display: flex;
             justify-content: center;
-            gap: 0.5rem;
-            padding: 1.5rem 2rem;
+            gap: 0.35rem;
+            padding: 1rem 2rem;
             flex-wrap: wrap;
-            background: var(--bg-primary);
-            border-bottom: 1px solid var(--border-color);
+            background: var(--bg-base);
+            border-bottom: 1px solid var(--border);
             position: sticky;
-            top: 70px;
+            top: 66px;
             z-index: 100;
         }
-        
+
         .phase-pill {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.6rem 1rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
+            gap: 0.4rem;
+            padding: 0.45rem 0.85rem;
+            border-radius: 100px;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.04em;
             font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s ease;
-            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+            border: 1px solid var(--border);
+            color: var(--text-2);
             background: var(--bg-card);
-            color: var(--text-secondary);
         }
-        
-        .phase-pill:hover {
-            transform: translateY(-2px);
-        }
-        
-        .phase-pill.active {
-            color: white;
-            border-color: transparent;
-        }
-        
-        .phase-pill.active.phase-1 { background: var(--phase-1); }
-        .phase-pill.active.phase-2 { background: var(--phase-2); }
-        .phase-pill.active.phase-3 { background: var(--phase-3); }
-        .phase-pill.active.phase-4 { background: var(--phase-4); }
-        .phase-pill.active.phase-5 { background: var(--phase-5); }
-        .phase-pill.active.phase-6 { background: var(--phase-6); }
-        .phase-pill.active.phase-7 { background: var(--phase-7); }
-        
-        .phase-pill-number {
-            width: 22px;
-            height: 22px;
+
+        .phase-pill:hover { transform: translateY(-2px); border-color: var(--border-mid); }
+
+        .pill-num {
+            width: 18px; height: 18px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 700;
-            background: var(--bg-tertiary);
-            color: var(--text-secondary);
+            display: flex; align-items: center; justify-content: center;
+            background: var(--bg-raised);
+            color: var(--text-3);
+            transition: background 0.2s, color 0.2s;
         }
-        
-        .phase-pill.active .phase-pill-number {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-        }
-        
-        /* Content Area */
+
+        .phase-pill.active { color: white; border-color: transparent; }
+        .phase-pill.active .pill-num { background: rgba(255,255,255,0.2); color: white; }
+
+        .phase-pill.active.ph-1 { background: var(--phase-1); }
+        .phase-pill.active.ph-2 { background: var(--phase-2); }
+        .phase-pill.active.ph-3 { background: var(--phase-3); }
+        .phase-pill.active.ph-4 { background: var(--phase-4); }
+        .phase-pill.active.ph-5 { background: var(--phase-5); }
+        .phase-pill.active.ph-6 { background: var(--phase-6); }
+        .phase-pill.active.ph-7 { background: var(--phase-7); }
+
+        /* ─── CONTENT ─── */
         .content-area {
-            padding: 2rem;
-            max-width: 1200px;
+            padding: 2.5rem 2rem;
+            max-width: 1100px;
             margin: 0 auto;
         }
-        
-        /* Phase Content */
-        .phase-content {
-            animation: fadeInUp 0.5s ease;
+
+        /* Phase animations */
+        .phase-content { animation: rise 0.4s cubic-bezier(0.16,1,0.3,1); }
+
+        @keyframes rise {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+
+        @keyframes fall {
+            from { opacity: 1; transform: translateY(0); }
+            to   { opacity: 0; transform: translateY(12px); }
         }
-        
-        @keyframes fadeOutDown {
-            from {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            to {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-        }
-        
-        .phase-content.exiting {
-            animation: fadeOutDown 0.3s ease forwards;
-        }
-        
-        .phase-header {
-            margin-bottom: 2rem;
-        }
-        
-        .phase-title {
-            font-size: 2rem;
-            font-weight: 700;
+
+        .phase-content.exiting { animation: fall 0.25s ease forwards; }
+
+        /* Phase title */
+        .phase-eyebrow {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--text-3);
             margin-bottom: 0.5rem;
+        }
+
+        .phase-heading {
             display: flex;
             align-items: center;
             gap: 1rem;
+            margin-bottom: 0.75rem;
         }
-        
-        .phase-title-number {
-            width: 50px;
-            height: 50px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 1.25rem;
+
+        .phase-num-box {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-display);
+            font-weight: 900;
+            font-size: 1.3rem;
             color: white;
+            flex-shrink: 0;
         }
-        
-        .phase-title-number.phase-1 { background: var(--phase-1); box-shadow: 0 0 30px rgba(90, 57, 102, var(--glow-intensity)); }
-        .phase-title-number.phase-2 { background: var(--phase-2); box-shadow: 0 0 30px rgba(45, 50, 90, var(--glow-intensity)); }
-        .phase-title-number.phase-3 { background: var(--phase-3); box-shadow: 0 0 30px rgba(30, 84, 120, var(--glow-intensity)); }
-        .phase-title-number.phase-4 { background: var(--phase-4); box-shadow: 0 0 30px rgba(35, 107, 80, var(--glow-intensity)); }
-        .phase-title-number.phase-5 { background: var(--phase-5); box-shadow: 0 0 30px rgba(194, 155, 56, var(--glow-intensity)); }
-        .phase-title-number.phase-6 { background: var(--phase-6); box-shadow: 0 0 30px rgba(189, 91, 42, var(--glow-intensity)); }
-        .phase-title-number.phase-7 { background: var(--phase-7); box-shadow: 0 0 30px rgba(158, 27, 34, var(--glow-intensity)); }
-        
-        .phase-description {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
+
+        .ph-1 .phase-num-box { background: var(--phase-1); box-shadow: 0 0 24px rgba(107,63,160,0.3); }
+        .ph-2 .phase-num-box { background: var(--phase-2); box-shadow: 0 0 24px rgba(43,74,140,0.3); }
+        .ph-3 .phase-num-box { background: var(--phase-3); box-shadow: 0 0 24px rgba(26,110,140,0.3); }
+        .ph-4 .phase-num-box { background: var(--phase-4); box-shadow: 0 0 24px rgba(26,122,82,0.3); }
+        .ph-5 .phase-num-box { background: var(--phase-5); box-shadow: 0 0 24px rgba(184,137,26,0.3); }
+        .ph-6 .phase-num-box { background: var(--phase-6); box-shadow: 0 0 24px rgba(192,74,30,0.3); }
+        .ph-7 .phase-num-box { background: var(--phase-7); box-shadow: 0 0 24px rgba(160,24,40,0.3); }
+
+        .phase-title-text {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            color: var(--text-1);
+            line-height: 1.15;
+        }
+
+        .phase-desc {
+            font-family: var(--font-body);
+            font-size: 0.97rem;
             line-height: 1.8;
-            padding: 1.5rem;
+            color: var(--text-2);
+            padding: 1.25rem 1.5rem;
             background: var(--bg-card);
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 1.75rem;
         }
-        
-        /* Section Cards */
+
+        /* ─── SECTION CARDS ─── */
         .section-card {
             background: var(--bg-card);
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            margin-bottom: 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 1.25rem;
             overflow: hidden;
         }
-        
-        .section-header {
-            padding: 1.25rem 1.5rem;
-            background: var(--bg-tertiary);
-            border-bottom: 1px solid var(--border-color);
+
+        .section-head {
             display: flex;
             align-items: center;
             gap: 0.75rem;
+            padding: 1rem 1.25rem;
+            background: var(--bg-raised);
+            border-bottom: 1px solid var(--border);
         }
-        
+
         .section-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
+            width: 32px; height: 32px;
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.85rem;
             color: white;
         }
-        
+
         .section-icon.tools { background: var(--phase-3); }
         .section-icon.resources { background: var(--phase-5); }
-        
-        .section-title {
+
+        .section-label {
+            font-family: var(--font-display);
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
+            color: var(--text-1);
         }
-        
-        .section-body {
-            padding: 1rem;
+
+        .section-count {
+            margin-left: auto;
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--text-3);
+            letter-spacing: 0.1em;
         }
-        
-        /* Resource Items */
-        .resource-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-        
-        .resource-item {
+
+        .section-body { padding: 0.75rem; }
+
+        /* ─── RESOURCE ROWS ─── */
+        .resource-list { display: flex; flex-direction: column; gap: 0.25rem; }
+
+        .resource-row {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            border-radius: 12px;
-            transition: all 0.3s ease;
+            gap: 0.85rem;
+            padding: 0.75rem 0.85rem;
+            border-radius: 8px;
+            transition: background 0.15s;
             border: 1px solid transparent;
         }
-        
-        .resource-item:hover {
-            background: var(--hover-bg);
-            border-color: var(--border-color);
+
+        .resource-row:hover {
+            background: var(--bg-hover);
+            border-color: var(--border);
         }
-        
-        .resource-checkbox {
-            width: 22px;
-            height: 22px;
-            border: 2px solid var(--border-color);
-            border-radius: 6px;
+
+        /* Checkbox */
+        .check-box {
+            width: 20px; height: 20px;
+            border: 1.5px solid var(--border-mid);
+            border-radius: 5px;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
+            display: flex; align-items: center; justify-content: center;
             flex-shrink: 0;
+            transition: all 0.2s;
         }
-        
-        .resource-checkbox:hover {
-            border-color: var(--phase-4);
+
+        .check-box:hover { border-color: var(--phase-4); }
+
+        .check-box i {
+            opacity: 0;
+            font-size: 0.65rem;
+            color: white;
+            transition: opacity 0.15s;
         }
-        
-        .resource-checkbox.checked {
+
+        .check-box.checked {
             background: var(--phase-4);
             border-color: var(--phase-4);
         }
-        
-        .resource-checkbox.checked i {
-            color: white;
-            font-size: 0.75rem;
-        }
-        
-        .resource-content {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        
-        .resource-link {
-            color: var(--text-primary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-        
-        .resource-link:hover {
-            color: var(--phase-3);
-        }
-        
-        /* Resource Tags */
-        .resource-tag {
+
+        .check-box.checked i { opacity: 1; }
+
+        /* Tag */
+        .res-tag {
             display: inline-flex;
             align-items: center;
-            gap: 0.4rem;
-            padding: 0.35rem 0.75rem;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 600;
+            gap: 0.3rem;
+            padding: 0.2rem 0.55rem;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
             flex-shrink: 0;
         }
-        
-        .resource-tag.video {
-            background: rgba(189, 91, 42, 0.15);
-            color: var(--phase-6);
-            border: 1px solid rgba(189, 91, 42, 0.3);
+
+        .res-tag.video    { background: rgba(192,74,30,0.12);  color: #D4673A; border: 1px solid rgba(192,74,30,0.25); }
+        .res-tag.course   { background: rgba(26,110,140,0.12); color: #3A9EC4; border: 1px solid rgba(26,110,140,0.25); }
+        .res-tag.github   { background: rgba(107,63,160,0.12); color: #9B6FD4; border: 1px solid rgba(107,63,160,0.25); }
+        .res-tag.tool     { background: rgba(26,122,82,0.12);  color: #2EA870; border: 1px solid rgba(26,122,82,0.25); }
+        .res-tag.website  { background: rgba(43,74,140,0.12);  color: #6888CC; border: 1px solid rgba(43,74,140,0.25); }
+        .res-tag.hardware { background: rgba(184,137,26,0.12); color: #C8A030; border: 1px solid rgba(184,137,26,0.25); }
+        .res-tag.pdf      { background: rgba(160,24,40,0.12);  color: #D43050; border: 1px solid rgba(160,24,40,0.25); }
+
+        /* Link */
+        .res-link {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-1);
+            text-decoration: none;
+            transition: color 0.15s;
+            flex: 1;
         }
-        
-        .resource-tag.course {
-            background: rgba(30, 84, 120, 0.15);
-            color: var(--phase-3);
-            border: 1px solid rgba(30, 84, 120, 0.3);
+
+        .res-link:hover { color: var(--accent); }
+
+        .res-link-icon {
+            font-size: 0.65rem;
+            margin-left: 0.3rem;
+            opacity: 0.4;
         }
-        
-        .resource-tag.github {
-            background: rgba(90, 57, 102, 0.15);
-            color: var(--phase-1);
-            border: 1px solid rgba(90, 57, 102, 0.3);
+
+        /* ─── HOME OVERVIEW CARDS ─── */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
         }
-        
-        .resource-tag.tool {
-            background: rgba(35, 107, 80, 0.15);
-            color: var(--phase-4);
-            border: 1px solid rgba(35, 107, 80, 0.3);
-        }
-        
-        .resource-tag.website {
-            background: rgba(45, 50, 90, 0.15);
-            color: #6b7cb3;
-            border: 1px solid rgba(45, 50, 90, 0.3);
-        }
-        
-        .resource-tag.hardware {
-            background: rgba(194, 155, 56, 0.15);
-            color: var(--phase-5);
-            border: 1px solid rgba(194, 155, 56, 0.3);
-        }
-        
-        .resource-tag.pdf {
-            background: rgba(158, 27, 34, 0.15);
-            color: var(--phase-7);
-            border: 1px solid rgba(158, 27, 34, 0.3);
-        }
-        
-        .resource-tag.software {
-            background: rgba(30, 84, 120, 0.15);
-            color: var(--phase-3);
-            border: 1px solid rgba(30, 84, 120, 0.3);
-        }
-        
-        /* Progress Bar */
-        .progress-section {
-            padding: 1.5rem 2rem;
-            background: var(--bg-secondary);
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        .progress-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .progress-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.75rem;
-        }
-        
-        .progress-title {
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-        
-        .progress-value {
-            font-weight: 700;
-            color: var(--phase-4);
-        }
-        
-        .progress-bar {
-            height: 8px;
-            background: var(--bg-tertiary);
-            border-radius: 4px;
+
+        .overview-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
             overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
         }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--phase-4), var(--phase-3));
-            border-radius: 4px;
-            transition: width 0.5s ease;
+
+        .overview-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--border-mid);
+            box-shadow: 0 12px 32px var(--shadow);
         }
-        
-        /* Footer */
+
+        .overview-card-head {
+            padding: 1.1rem 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            color: white;
+        }
+
+        .overview-card-num {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            opacity: 0.3;
+        }
+
+        .overview-card-title {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 0.92rem;
+            line-height: 1.3;
+        }
+
+        .overview-card-body { padding: 1rem 1.25rem; }
+
+        .overview-card-desc {
+            font-family: var(--font-body);
+            font-size: 0.84rem;
+            line-height: 1.65;
+            color: var(--text-2);
+            margin-bottom: 0.85rem;
+        }
+
+        .overview-card-meta {
+            display: flex;
+            gap: 1rem;
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-3);
+        }
+
+        /* ─── EMPTY STATE ─── */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .empty-state-icon {
+            font-size: 2.5rem;
+            color: var(--text-3);
+            margin-bottom: 1rem;
+        }
+
+        .empty-state-title {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-1);
+            margin-bottom: 0.6rem;
+        }
+
+        .empty-state-body {
+            font-family: var(--font-body);
+            font-style: italic;
+            font-size: 0.92rem;
+            color: var(--text-3);
+            line-height: 1.7;
+        }
+
+        /* ─── FOOTER ─── */
         .footer {
             padding: 2rem;
             text-align: center;
-            border-top: 1px solid var(--border-color);
-            background: var(--bg-secondary);
-            margin-top: 3rem;
+            border-top: 1px solid var(--border);
+            background: var(--bg-surface);
+            margin-top: 4rem;
         }
-        
+
         .footer-text {
-            color: var(--text-muted);
-            font-size: 0.9rem;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-3);
         }
-        
-        .footer-heart {
-            color: var(--phase-7);
-        }
-        
-        /* Responsive */
+
+        .footer-heart { color: var(--phase-7); }
+
+        /* ─── RESPONSIVE ─── */
         @media (max-width: 768px) {
-            .header {
-                padding: 0 1rem;
-            }
-            
-            .nav-container {
-                gap: 1rem;
-            }
-            
+            .header { padding: 0 1rem; }
+            .nav-container { gap: 0.75rem; }
+            .logo-wordmark, .logo-divider, .logo-sub { display: none; }
+
             .mega-menu {
-                width: 95vw;
-                left: 2.5%;
-                transform: translateY(-10px);
+                width: 96vw;
+                left: 2%;
+                /* On mobile: kill the translateX so menu doesn't go off-screen */
+                transform: translateY(-6px);
             }
-            
+
+            .mega-menu.open,
             .nav-item:hover .mega-menu {
                 transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
             }
-            
-            .mega-menu-grid {
-                grid-template-columns: 1fr;
+
+            /* Prevent hover from showing on mobile (touch devices) */
+            @media (hover: none) {
+                .nav-item:hover .mega-menu:not(.open) {
+                    opacity: 0;
+                    visibility: hidden;
+                    transform: translateY(-6px);
+                }
             }
-            
-            .hero-stats {
-                gap: 1.5rem;
-            }
-            
-            .phase-nav {
-                padding: 1rem;
-                gap: 0.4rem;
-            }
-            
-            .phase-pill {
-                padding: 0.5rem 0.75rem;
-                font-size: 0.8rem;
-            }
-            
-            .phase-pill-text {
-                display: none;
-            }
-            
-            .content-area {
-                padding: 1rem;
-            }
-            
-            .phase-title {
-                font-size: 1.5rem;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
-            }
-            
-            .resource-content {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
-            }
+
+            .mega-menu-grid { grid-template-columns: 1fr; }
+
+            .phase-nav { padding: 0.75rem 1rem; }
+            .phase-pill .pill-text { display: none; }
+            .phase-pill { padding: 0.45rem 0.6rem; }
+
+            .content-area { padding: 1.25rem 1rem; }
+            .phase-title-text { font-size: 1.3rem; }
+            .hero { padding: 3rem 1.25rem 2.5rem; }
+            .hero-stats { gap: 2rem; }
         }
-        
+
         /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: var(--bg-primary);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: var(--border-color);
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--text-muted);
-        }
-        
-        /* Selection */
-        ::selection {
-            background: var(--phase-3);
-            color: white;
-        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-base); }
+        ::-webkit-scrollbar-thumb { background: var(--border-mid); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-3); }
+        ::selection { background: var(--accent); color: white; }
     </style>
 </head>
 <body data-theme="dark">
-    <!-- Header -->
+
+    <!-- ─── HEADER ─── -->
     <header class="header">
-        <a href="#" class="logo" onclick="showHome()">
-            <div class="logo-icon">
-                <i class="fas fa-robot"></i>
-            </div>
-            <span>Robotics Mastery</span>
+        <a href="javascript:void(0)" class="logo" onclick="showHome()">
+            <img
+                class="logo-img"
+                src="https://res.cloudinary.com/dc2gwj09q/image/upload/f_auto,q_auto/Alix_Logo-removebg-preview_aykhme"
+                alt="Alix"
+                onerror="this.style.display='none'"
+            >
+            <div class="logo-divider"></div>
+            <span class="logo-sub">Robotics Portal</span>
         </a>
-        
+
         <nav class="nav-container">
             <div class="nav-item">
-                <div class="nav-link" onclick="toggleMegaMenu()">
-                    <i class="fas fa-layer-group"></i>
+                <div class="nav-link" id="phasesNavBtn" onclick="toggleMegaMenu(event)">
+                    <i class="fas fa-layer-group" style="font-size:0.75rem;"></i>
                     <span>Phases</span>
-                    <i class="fas fa-chevron-down" style="font-size: 0.75rem;"></i>
+                    <i class="fas fa-chevron-down chevron"></i>
                 </div>
                 <div class="mega-menu" id="megaMenu">
-                    <div class="mega-menu-title">Learning Roadmap</div>
-                    <div class="mega-menu-grid" id="megaMenuGrid">
-                        <!-- Populated by JS -->
-                    </div>
+                    <div class="mega-menu-label">Learning Roadmap</div>
+                    <div class="mega-menu-grid" id="megaMenuGrid"></div>
                 </div>
             </div>
-            
-            <div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
-                <div class="theme-toggle-slider">
+
+            <div class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+                <div class="toggle-knob">
                     <i class="fas fa-moon" id="themeIcon"></i>
                 </div>
             </div>
         </nav>
     </header>
-    
-    <!-- Main Container -->
-    <main class="main-container" id="mainContainer">
-        <!-- Content injected by JS -->
-    </main>
-    
-    <!-- Footer -->
+
+    <!-- ─── MAIN ─── -->
+    <main class="main-container" id="mainContainer"></main>
+
+    <!-- ─── FOOTER ─── -->
     <footer class="footer">
         <p class="footer-text">
-            Built with <i class="fas fa-heart footer-heart"></i> for aspiring roboticists
+            Built with <i class="fas fa-heart footer-heart"></i> for aspiring roboticists &nbsp;·&nbsp; Project B.U.I.L.D.
         </p>
     </footer>
 
     <script>
-        // ============================================
-        // DATA: All 7 Phases Content
-        // ============================================
-        const phasesData = [
-            {
-                id: 1,
-                title: "The Physics and Hardware Fundamentals",
-                shortTitle: "Physics & Hardware",
-                description: "Before writing any code, you must understand how electrons flow and how hardware components manipulate that flow. Master Circuit Theory (Ohm's Law, Kirchhoff's Laws), Passive & Active Components, and Digital Logic Design. Get comfortable with a multimeter, oscilloscope, and soldering iron.",
-                tools: [
-                    { name: "TinkerCAD", tag: "Tool/Software", tagClass: "tool", url: "https://www.tinkercad.com/", icon: "fa-cube" },
-                    { name: "Proteus Design Suite", tag: "Tool/Software", tagClass: "tool", url: "https://www.labcenter.com/", icon: "fa-microchip" },
-                    { name: "KiCad", tag: "Tool/Software", tagClass: "tool", url: "https://www.kicad.org/", icon: "fa-drafting-compass" },
-                    { name: "LTspice", tag: "Tool/Software", tagClass: "tool", url: "https://www.analog.com/en/design-center/design-tools-and-calculators/ltspice-simulator.html", icon: "fa-wave-square" }
-                ],
-                resources: [
-                    { name: "CircuitBread", tag: "Website", tagClass: "website", url: "https://www.circuitbread.com/", icon: "fa-globe" },
-                    { name: "Electronics Tutorials", tag: "Website", tagClass: "website", url: "https://www.electronics-tutorials.ws/", icon: "fa-globe" },
-                    { name: "MIT 6.002 on OCW", tag: "Course", tagClass: "course", url: "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/", icon: "fa-graduation-cap" },
-                    { name: "Ben Eater's Breadboard Computer", tag: "Video", tagClass: "video", url: "https://eater.net/8bit", icon: "fa-play-circle" },
-                    { name: "All About Circuits Video Tutorials", tag: "Video", tagClass: "video", url: "https://www.allaboutcircuits.com/video-tutorials/", icon: "fa-play-circle" },
-                    { name: "Electronics Basics Playlist", tag: "Video", tagClass: "video", url: "https://youtube.com/playlist?list=PLAROrg3NQn7cyu01HpOv5BWo217XWBZu0", icon: "fa-play-circle" },
-                    { name: "Nerdshed Arduino Starter Kit", tag: "Tool/Hardware", tagClass: "hardware", url: "https://nerdshed.com.ng/arduino-kit/", icon: "fa-toolbox" }
-                ]
-            },
-            {
-                id: 2,
-                title: "Microcontrollers and Bare-Metal C/C++",
-                shortTitle: "Microcontrollers",
-                description: "This is where hardware meets software. Step away from Arduino abstractions. Master C/C++, pointers, memory addresses, and bitwise operations. Learn to read datasheets, manipulate memory registers, and use Interrupts, Timers, and PWM. Master UART, I2C, and SPI.",
-                tools: [
-                    { name: "Wokwi", tag: "Tool/Software", tagClass: "tool", url: "https://wokwi.com/", icon: "fa-laptop-code" },
-                    { name: "PlatformIO", tag: "Tool/Software", tagClass: "tool", url: "https://platformio.org/", icon: "fa-code" },
-                    { name: "STM32CubeIDE", tag: "Tool/Software", tagClass: "tool", url: "https://www.st.com/en/development-tools/stm32cubeide.html", icon: "fa-microchip" }
-                ],
-                resources: [
-                    { name: "Sergey Lyubka's Bare-Metal Programming Guide", tag: "GitHub/Website", tagClass: "github", url: "https://github.com/cpq/bare-metal-programming-guide", icon: "fa-github" },
-                    { name: "Phil's Lab on YouTube", tag: "Video", tagClass: "video", url: "https://www.youtube.com/c/PhilsLab", icon: "fa-play-circle" },
-                    { name: "Learn C++", tag: "Website", tagClass: "website", url: "https://www.learncpp.com/", icon: "fa-globe" },
-                    { name: "Codecademy: Learn C++", tag: "Course", tagClass: "course", url: "https://www.codecademy.com/learn/learn-c-plus-plus", icon: "fa-graduation-cap" },
-                    { name: "C++ Beginner Course", tag: "Video", tagClass: "video", url: "https://youtu.be/vLnPwxZdW4Y", icon: "fa-play-circle" },
-                    { name: "The Cherno C++ Tutorial", tag: "Video", tagClass: "video", url: "https://youtube.com/playlist?list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb", icon: "fa-play-circle" },
-                    { name: "ControllersTech", tag: "Website", tagClass: "website", url: "https://controllerstech.com/", icon: "fa-globe" },
-                    { name: "Learn Embedded Systems", tag: "Website", tagClass: "website", url: "https://learnembeddedsystems.co.uk/", icon: "fa-globe" },
-                    { name: "Embedded C Programming Course for Beginners", tag: "Course", tagClass: "course", url: "https://cursa.app/en/free-course/embedded-c-programming-course-for-beginners-efcb", icon: "fa-graduation-cap" },
-                    { name: "Simplilearn Embedded Systems Course", tag: "Course", tagClass: "course", url: "https://www.simplilearn.com/embedded-systems-course-online-free-skillup", icon: "fa-graduation-cap" },
-                    { name: "Udemy: Arduino Tutorial Basics", tag: "Course", tagClass: "course", url: "https://blog.udemy.com/arduino-tutorial-learn-the-basics/", icon: "fa-graduation-cap" },
-                    { name: "Udemy: IoT Home Automation", tag: "Course", tagClass: "course", url: "https://www.udemy.com/course/iot-home-automation-arduino-esp32/", icon: "fa-graduation-cap" },
-                    { name: "Arduino Lessons", tag: "Video", tagClass: "video", url: "https://youtube.com/playlist?list=PLGs0VKk2DiYx6CMdOQR_hmJ2NbB4mZQn-", icon: "fa-play-circle" },
-                    { name: "Arduino with Python", tag: "Video", tagClass: "video", url: "https://youtube.com/playlist?list=PLGs0VKk2DiYylFUUMMv9WiL3x3tpscDUQ", icon: "fa-play-circle" }
-                ]
-            },
-            {
-                id: 3,
-                title: "Real-Time Operating Systems (RTOS)",
-                shortTitle: "RTOS",
-                description: "When building complex systems, a simple super-loop isn't enough. Learn about task scheduling, context switching, mutexes, semaphores, and message queues using FreeRTOS or Zephyr on an ARM Cortex-M microcontroller.",
-                tools: [
-                    { name: "Segger SystemView", tag: "Tool/Software", tagClass: "tool", url: "https://www.segger.com/products/development-tools/systemview/", icon: "fa-chart-line" },
-                    { name: "Zephyr RTOS Environment", tag: "Tool/Software", tagClass: "tool", url: "https://www.zephyrproject.org/", icon: "fa-wind" }
-                ],
-                resources: [
-                    { name: "FreeRTOS Beginner Guide", tag: "Website", tagClass: "website", url: "https://www.freertos.org/FreeRTOS-quick-start-guide.html", icon: "fa-globe" },
-                    { name: "Mastering the FreeRTOS Real Time Kernel", tag: "PDF/Book", tagClass: "pdf", url: "https://www.freertos.org/fr-content-src/uploads/2018/07/161204_Mastering_the_FreeRTOS_Real_Time_Kernel-A_Hands-On_Tutorial_Guide.pdf", icon: "fa-file-pdf" }
-                ]
-            },
-            {
-                id: 4,
-                title: "Embedded Linux and Edge Computing",
-                shortTitle: "Embedded Linux",
-                description: "Humanoids require massive computational power. Learn how the Linux kernel works, write device drivers, and build custom Linux images using Yocto or Buildroot. Utilize Python for scripting and move to Single Board Computers.",
-                tools: [
-                    { name: "QEMU", tag: "Tool/Software", tagClass: "tool", url: "https://www.qemu.org/", icon: "fa-server" },
-                    { name: "Yocto Project", tag: "Tool/Software", tagClass: "tool", url: "https://www.yoctoproject.org/", icon: "fa-cogs" },
-                    { name: "Buildroot", tag: "Tool/Software", tagClass: "tool", url: "https://buildroot.org/", icon: "fa-hammer" }
-                ],
-                resources: [
-                    { name: "Bootlin Free Training Slides", tag: "Course/PDF", tagClass: "course", url: "https://bootlin.com/training/", icon: "fa-graduation-cap" },
-                    { name: "CS50's Introduction to Programming with Python", tag: "Course", tagClass: "course", url: "https://pll.harvard.edu/course/cs50s-introduction-programming-python", icon: "fa-graduation-cap" },
-                    { name: "Raspberry Pi for Beginners", tag: "Video", tagClass: "video", url: "https://youtube.com/playlist?list=PLGs0VKk2DiYxdMjCJmcP6jt4Yw6OHK85O", icon: "fa-play-circle" },
-                    { name: "Artificial Intelligence with Jetson Nano", tag: "Video", tagClass: "video", url: "https://youtube.com/playlist?list=PLGs0VKk2DiYxP-ElZ7-QXIERFFPkOuP4", icon: "fa-play-circle" },
-                    { name: "Additional Hardware/AI Playlist", tag: "Video", tagClass: "video", url: "https://youtube.com/playlist?list=PLGs0VKk2DiYypuwUUM2wxzcI9BJHK4Bfh", icon: "fa-play-circle" }
-                ]
-            },
-            {
-                id: 5,
-                title: "Robotics Frameworks and Kinematics",
-                shortTitle: "Robotics Frameworks",
-                description: "Transition from embedded systems to robotics. Master ROS/ROS 2 (Robot Operating System). Learn Forward/Inverse Kinematics using linear algebra, and Sensor Fusion combining data via Kalman Filters.",
-                tools: [
-                    { name: "Gazebo", tag: "Tool/Software", tagClass: "tool", url: "https://gazebosim.org/", icon: "fa-cube" },
-                    { name: "Foxglove Studio", tag: "Tool/Software", tagClass: "tool", url: "https://foxglove.dev/", icon: "fa-chart-area" }
-                ],
-                resources: [
-                    { name: "Open Robotics Free Training Sessions", tag: "Video", tagClass: "video", url: "https://vimeo.com/showcase/10183141", icon: "fa-play-circle" },
-                    { name: "ROS Wiki Tutorials", tag: "Website", tagClass: "website", url: "http://wiki.ros.org/ROS/Tutorials", icon: "fa-globe" },
-                    { name: "Robot Academy", tag: "Course", tagClass: "course", url: "https://robotacademy.net.au/", icon: "fa-graduation-cap" },
-                    { name: "GetVM Robotics Tutorials", tag: "Website", tagClass: "website", url: "https://getvm.io/tutorials/category/robotics", icon: "fa-globe" },
-                    { name: "Mechamind Labs Tutorials", tag: "Website", tagClass: "website", url: "https://www.mechamindlabs.com/youtube-tutorials", icon: "fa-globe" },
-                    { name: "Resources for Robotics", tag: "Website", tagClass: "website", url: "https://www.resourcesforrobotics.com/", icon: "fa-globe" },
-                    { name: "Introduction to Robotics for Beginners", tag: "Course", tagClass: "course", url: "https://www.classcentral.com/course/youtube-introduction-to-robotics-and-robots-for-beginners-tutorial-46791", icon: "fa-graduation-cap" },
-                    { name: "Aviation/Drone Safety (FAA)", tag: "Course", tagClass: "course", url: "https://www.faasafety.gov/gslac/ALC/CourseLanding.aspx?cID=677", icon: "fa-graduation-cap" },
-                    { name: "Mithi's Robotics Coursework", tag: "GitHub", tagClass: "github", url: "https://github.com/mithi/robotics-coursework", icon: "fa-github" }
-                ]
-            },
-            {
-                id: 6,
-                title: "Complex Control Theory and SLAM",
-                shortTitle: "Control Theory & SLAM",
-                description: "Humanoids are inherently unstable. Move beyond basic PID controllers to learn LQR and Model Predictive Control (MPC). Study high-torque BLDC motors, harmonic drives, ZMP, and dynamic walking algorithms.",
-                tools: [
-                    { name: "Webots", tag: "Tool/Software", tagClass: "tool", url: "https://cyberbotics.com/", icon: "fa-robot" },
-                    { name: "Python Control Systems Library", tag: "Tool/Software", tagClass: "tool", url: "https://python-control.readthedocs.io/", icon: "fa-code" }
-                ],
-                resources: [
-                    { name: "Roger Labbe's Kalman and Bayesian Filters in Python", tag: "GitHub/Book", tagClass: "github", url: "https://github.com/rlabbe/Kalman-and-Bayesian-Filters-in-Python", icon: "fa-github" },
-                    { name: "Articulated Robotics (Nav2 Robot from Scratch)", tag: "Video", tagClass: "video", url: "https://www.youtube.com/c/ArticulatedRobotics", icon: "fa-play-circle" },
-                    { name: "Awesome Autonomous Drone Racing", tag: "GitHub", tagClass: "github", url: "https://github.com/aimarket/awesome-autonomous-drone-racing", icon: "fa-github" },
-                    { name: "Langostino (Swarm Subnet)", tag: "GitHub", tagClass: "github", url: "https://github.com/swarm-subnet/Langostino", icon: "fa-github" },
-                    { name: "Mercury Transforming Drone", tag: "GitHub", tagClass: "github", url: "https://github.com/L42ARO/Mercury-Transforming-Drone", icon: "fa-github" }
-                ]
-            },
-            {
-                id: 7,
-                title: "Humanoids and Advanced ML",
-                shortTitle: "Humanoids & ML",
-                description: "The final frontier. This phase moves past tutorials into research-grade frameworks and advanced control toolboxes. Integrate reinforcement learning policies trained in massive parallel simulation, deploy dynamic walking algorithms via MPC, and handle complex rigid-body dynamics for full bipedal locomotion.",
-                tools: [
-                    { name: "NVIDIA Isaac Lab", tag: "Tool/Software", tagClass: "tool", url: "https://developer.nvidia.com/isaac/sim", icon: "fa-microchip" },
-                    { name: "Drake", tag: "Tool/Software", tagClass: "tool", url: "https://drake.mit.edu/", icon: "fa-cogs" },
-                    { name: "MuJoCo Physics Engine", tag: "Tool/Software", tagClass: "tool", url: "https://mujoco.org/", icon: "fa-atom" }
-                ],
-                resources: [
-                    { name: "Underactuated Robotics (Russ Tedrake, MIT)", tag: "Textbook", tagClass: "website", url: "https://underactuated.csail.mit.edu/", icon: "fa-book" },
-                    { name: "Pinocchio (Rigid Body Dynamics)", tag: "GitHub/Library", tagClass: "github", url: "https://github.com/stack-of-tasks/pinocchio", icon: "fa-github" },
-                    { name: "OCS2 (Optimal Control for Legged Robots)", tag: "GitHub/Library", tagClass: "github", url: "https://github.com/leggedrobotics/ocs2", icon: "fa-github" },
-                    { name: "Humanoid-Gym", tag: "GitHub/Software", tagClass: "github", url: "https://github.com/roboter-a/Humanoid-Gym", icon: "fa-github" }
-                ]
-            }
-        ];
-
-        // ============================================
-        // STATE MANAGEMENT
-        // ============================================
-        let currentPhase = 0;
-        let checkedItems = JSON.parse(localStorage.getItem('roboticsProgress') || '{}');
-
-        // ============================================
-        // INITIALIZATION
-        // ============================================
-        document.addEventListener('DOMContentLoaded', () => {
-            initMegaMenu();
-            showHome();
-            updateProgress();
-        });
-
-        // ============================================
-        // THEME TOGGLE
-        // ============================================
-        function toggleTheme() {
-            const body = document.body;
-            const themeIcon = document.getElementById('themeIcon');
-            const currentTheme = body.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            body.setAttribute('data-theme', newTheme);
-            themeIcon.className = newTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
-            
-            localStorage.setItem('theme', newTheme);
+    // ════════════════════════════════════════════════
+    //  DATA
+    // ════════════════════════════════════════════════
+    const phasesData = [
+        {
+            id: 1,
+            title: "Physics & Hardware Fundamentals",
+            shortTitle: "Physics & Hardware",
+            description: "Before writing any code, you must understand how electrons flow and how hardware components manipulate that flow. Master Circuit Theory (Ohm's Law, Kirchhoff's Laws), Passive & Active Components, and Digital Logic Design. Get comfortable with a multimeter, oscilloscope, and soldering iron.",
+            tools: [
+                { name: "TinkerCAD",            tag: "Tool",    tagClass: "tool",    url: "https://www.tinkercad.com/",           icon: "fa-cube" },
+                { name: "Proteus Design Suite",  tag: "Tool",    tagClass: "tool",    url: "https://www.labcenter.com/",           icon: "fa-microchip" },
+                { name: "KiCad",                 tag: "Tool",    tagClass: "tool",    url: "https://www.kicad.org/",               icon: "fa-drafting-compass" },
+                { name: "LTspice",               tag: "Tool",    tagClass: "tool",    url: "https://www.analog.com/en/resources/design-tools-and-calculators/ltspice-simulator.html", icon: "fa-wave-square" }
+            ],
+            resources: [
+                { name: "CircuitBread",                        tag: "Website", tagClass: "website", url: "https://www.circuitbread.com/",                                                       icon: "fa-globe" },
+                { name: "Electronics Tutorials",               tag: "Website", tagClass: "website", url: "https://www.electronics-tutorials.ws/",                                               icon: "fa-globe" },
+                { name: "MIT 6.002 — Circuits & Electronics",  tag: "Course",  tagClass: "course",  url: "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/",             icon: "fa-graduation-cap" },
+                { name: "Ben Eater's 8-bit Breadboard Computer",tag: "Video",  tagClass: "video",   url: "https://eater.net/8bit",                                                              icon: "fa-play-circle" },
+                { name: "All About Circuits — Video Tutorials", tag: "Video",  tagClass: "video",   url: "https://www.allaboutcircuits.com/video-tutorials/",                                   icon: "fa-play-circle" },
+                { name: "Electronics Basics Playlist",          tag: "Video",  tagClass: "video",   url: "https://www.youtube.com/playlist?list=PLAROrg3NQn7cyu01HpOv5BWo217XWBZu0",          icon: "fa-play-circle" },
+                { name: "Nerdshed Arduino Starter Kit (Nigeria)",tag: "Hardware",tagClass:"hardware",url: "https://nerdshed.com.ng/arduino-kit/",                                               icon: "fa-toolbox" }
+            ]
+        },
+        {
+            id: 2,
+            title: "Microcontrollers & Bare-Metal C/C++",
+            shortTitle: "Microcontrollers",
+            description: "This is where hardware meets software. Step away from Arduino abstractions. Master C/C++, pointers, memory addresses, and bitwise operations. Learn to read datasheets, manipulate memory registers, and use Interrupts, Timers, and PWM. Master UART, I2C, and SPI.",
+            tools: [
+                { name: "Wokwi",        tag: "Tool", tagClass: "tool", url: "https://wokwi.com/",                                        icon: "fa-laptop-code" },
+                { name: "PlatformIO",   tag: "Tool", tagClass: "tool", url: "https://platformio.org/",                                   icon: "fa-code" },
+                { name: "STM32CubeIDE", tag: "Tool", tagClass: "tool", url: "https://www.st.com/en/development-tools/stm32cubeide.html", icon: "fa-microchip" }
+            ],
+            resources: [
+                { name: "Bare Metal Programming Guide — Sergey Lyubka", tag: "GitHub",  tagClass: "github",  url: "https://github.com/cpq/bare-metal-programming-guide",                                                        icon: "fa-github" },
+                { name: "Phil's Lab",                                    tag: "Video",   tagClass: "video",   url: "https://www.youtube.com/@PhilsLab",                                                                         icon: "fa-play-circle" },
+                { name: "Learn C++",                                     tag: "Website", tagClass: "website", url: "https://www.learncpp.com/",                                                                                 icon: "fa-globe" },
+                { name: "Codecademy — Learn C++",                        tag: "Course",  tagClass: "course",  url: "https://www.codecademy.com/learn/learn-c-plus-plus",                                                       icon: "fa-graduation-cap" },
+                { name: "C++ Full Course — freeCodeCamp",                tag: "Video",   tagClass: "video",   url: "https://www.youtube.com/watch?v=vLnPwxZdW4Y",                                                             icon: "fa-play-circle" },
+                { name: "The Cherno — C++ Tutorial Series",              tag: "Video",   tagClass: "video",   url: "https://www.youtube.com/playlist?list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb",                               icon: "fa-play-circle" },
+                { name: "ControllersTech",                               tag: "Website", tagClass: "website", url: "https://controllerstech.com/",                                                                             icon: "fa-globe" },
+                { name: "Learn Embedded Systems",                        tag: "Website", tagClass: "website", url: "https://learnembeddedsystems.co.uk/",                                                                     icon: "fa-globe" },
+                { name: "Embedded C for Beginners — Cursa",              tag: "Course",  tagClass: "course",  url: "https://cursa.app/en/free-course/embedded-c-programming-course-for-beginners-efcb",                       icon: "fa-graduation-cap" },
+                { name: "Embedded Systems Free Course — Simplilearn",    tag: "Course",  tagClass: "course",  url: "https://www.simplilearn.com/embedded-systems-course-online-free-skillup",                                 icon: "fa-graduation-cap" },
+                { name: "Arduino Tutorial Basics — Udemy Blog",          tag: "Website", tagClass: "website", url: "https://blog.udemy.com/arduino-tutorial-learn-the-basics/",                                               icon: "fa-globe" },
+                { name: "IoT Home Automation with Arduino & ESP32 — Udemy",tag:"Course", tagClass: "course",  url: "https://www.udemy.com/course/iot-home-automation-arduino-esp32/",                                         icon: "fa-graduation-cap" },
+                { name: "Arduino Lessons Playlist",                       tag: "Video",  tagClass: "video",   url: "https://www.youtube.com/playlist?list=PLGs0VKk2DiYx6CMdOQR_hmJ2NbB4mZQn-",                               icon: "fa-play-circle" },
+                { name: "Arduino with Python Playlist",                   tag: "Video",  tagClass: "video",   url: "https://www.youtube.com/playlist?list=PLGs0VKk2DiYylFUUMMv9WiL3x3tpscDUQ",                               icon: "fa-play-circle" }
+            ]
+        },
+        {
+            id: 3,
+            title: "Real-Time Operating Systems",
+            shortTitle: "RTOS",
+            description: "When building complex systems, a simple super-loop isn't enough. Learn task scheduling, context switching, mutexes, semaphores, and message queues using FreeRTOS or Zephyr on an ARM Cortex-M microcontroller.",
+            tools: [
+                { name: "Segger SystemView",       tag: "Tool", tagClass: "tool", url: "https://www.segger.com/products/development-tools/systemview/", icon: "fa-chart-line" },
+                { name: "Zephyr RTOS Environment", tag: "Tool", tagClass: "tool", url: "https://www.zephyrproject.org/",                                icon: "fa-wind" }
+            ],
+            resources: [
+                { name: "FreeRTOS — Quick Start Guide",                   tag: "Website", tagClass: "website", url: "https://www.freertos.org/Documentation/01-FreeRTOS-quick-start/01-Beginners-guide/00-Overview",                                                                               icon: "fa-globe" },
+                { name: "Mastering the FreeRTOS Kernel (Free PDF)",       tag: "PDF",     tagClass: "pdf",     url: "https://www.freertos.org/Documentation/02-Kernel/07-Books-and-manual/01-RTOS_book",                                                                                           icon: "fa-file-pdf" }
+            ]
+        },
+        {
+            id: 4,
+            title: "Embedded Linux & Edge Computing",
+            shortTitle: "Embedded Linux",
+            description: "Humanoids require massive computational power. Learn how the Linux kernel works, write device drivers, and build custom Linux images using Yocto or Buildroot. Utilize Python for scripting and move to Single Board Computers.",
+            tools: [
+                { name: "QEMU",          tag: "Tool", tagClass: "tool", url: "https://www.qemu.org/",          icon: "fa-server" },
+                { name: "Yocto Project", tag: "Tool", tagClass: "tool", url: "https://www.yoctoproject.org/", icon: "fa-cogs" },
+                { name: "Buildroot",     tag: "Tool", tagClass: "tool", url: "https://buildroot.org/",         icon: "fa-hammer" }
+            ],
+            resources: [
+                { name: "Bootlin — Free Embedded Linux Training",         tag: "Course",  tagClass: "course",  url: "https://bootlin.com/training/",                                                                         icon: "fa-graduation-cap" },
+                { name: "Harvard CS50P — Introduction to Python",         tag: "Course",  tagClass: "course",  url: "https://pll.harvard.edu/course/cs50s-introduction-programming-python",                                 icon: "fa-graduation-cap" },
+                { name: "Raspberry Pi for Beginners",                     tag: "Video",   tagClass: "video",   url: "https://www.youtube.com/playlist?list=PLGs0VKk2DiYxdMjCJmcP6jt4Yw6OHK85O",                           icon: "fa-play-circle" },
+                { name: "Artificial Intelligence with Jetson Nano",       tag: "Video",   tagClass: "video",   url: "https://www.youtube.com/playlist?list=PLGs0VKk2DiYxP-ElZ7-QXIERFFPkOuP4_",                           icon: "fa-play-circle" },
+                { name: "Hardware & AI Extended Playlist",                tag: "Video",   tagClass: "video",   url: "https://www.youtube.com/playlist?list=PLGs0VKk2DiYypuwUUM2wxzcI9BJHK4Bfh",                           icon: "fa-play-circle" }
+            ]
+        },
+        {
+            id: 5,
+            title: "Robotics Frameworks & Kinematics",
+            shortTitle: "Robotics Frameworks",
+            description: "Transition from embedded systems to robotics. Master ROS/ROS 2 (Robot Operating System). Learn Forward/Inverse Kinematics using linear algebra, and Sensor Fusion combining data via Kalman Filters.",
+            tools: [
+                { name: "Gazebo Sim",      tag: "Tool", tagClass: "tool", url: "https://gazebosim.org/",    icon: "fa-cube" },
+                { name: "Foxglove Studio", tag: "Tool", tagClass: "tool", url: "https://foxglove.dev/",     icon: "fa-chart-area" }
+            ],
+            resources: [
+                { name: "Open Robotics — Free ROS2 Training (YouTube)",      tag: "Video",   tagClass: "video",   url: "https://www.youtube.com/@openrobotics",                                                                     icon: "fa-play-circle" },
+                { name: "ROS Wiki — Official Tutorials",                      tag: "Website", tagClass: "website", url: "https://wiki.ros.org/ROS/Tutorials",                                                                        icon: "fa-globe" },
+                { name: "Robot Academy — Peter Corke",                        tag: "Course",  tagClass: "course",  url: "https://robotacademy.net.au/",                                                                              icon: "fa-graduation-cap" },
+                { name: "GetVM — Robotics Tutorials (Browser-Based)",         tag: "Website", tagClass: "website", url: "https://getvm.io/tutorials/category/robotics",                                                              icon: "fa-globe" },
+                { name: "MechaMind Labs",                                     tag: "Website", tagClass: "website", url: "https://www.mechamindlabs.com/youtube-tutorials",                                                          icon: "fa-globe" },
+                { name: "Resources for Robotics",                             tag: "Website", tagClass: "website", url: "https://www.resourcesforrobotics.com/",                                                                    icon: "fa-globe" },
+                { name: "Introduction to Robotics — Class Central",           tag: "Course",  tagClass: "course",  url: "https://www.classcentral.com/course/youtube-introduction-to-robotics-and-robots-for-beginners-tutorial-46791", icon: "fa-graduation-cap" },
+                { name: "FAA sUAS / Drone Safety Course",                     tag: "Course",  tagClass: "course",  url: "https://www.faasafety.gov/gslac/ALC/CourseLanding.aspx?cID=677",                                          icon: "fa-graduation-cap" },
+                { name: "Mithi's Robotics Coursework",                        tag: "GitHub",  tagClass: "github",  url: "https://github.com/mithi/robotics-coursework",                                                             icon: "fa-github" }
+            ]
+        },
+        {
+            id: 6,
+            title: "Control Theory, SLAM & Drones",
+            shortTitle: "Control Theory & SLAM",
+            description: "Humanoids are inherently unstable. Move beyond PID to learn LQR and Model Predictive Control (MPC). Study high-torque BLDC motors, harmonic drives, ZMP, dynamic walking algorithms, and autonomous drone systems.",
+            tools: [
+                { name: "Webots",                         tag: "Tool", tagClass: "tool", url: "https://cyberbotics.com/",                    icon: "fa-robot" },
+                { name: "Python Control Systems Library", tag: "Tool", tagClass: "tool", url: "https://python-control.readthedocs.io/",       icon: "fa-code" }
+            ],
+            resources: [
+                { name: "Kalman & Bayesian Filters in Python — Roger Labbe", tag: "GitHub", tagClass: "github", url: "https://github.com/rlabbe/Kalman-and-Bayesian-Filters-in-Python",   icon: "fa-github" },
+                { name: "Articulated Robotics — Nav2 Robot from Scratch",    tag: "Video",  tagClass: "video",  url: "https://www.youtube.com/@ArticulatedRobotics",                       icon: "fa-play-circle" },
+                { name: "Awesome Autonomous Drone Racing",                   tag: "GitHub", tagClass: "github", url: "https://github.com/aimarket/awesome-autonomous-drone-racing",        icon: "fa-github" },
+                { name: "Langostino — Swarm Drone Coordination",             tag: "GitHub", tagClass: "github", url: "https://github.com/swarm-subnet/Langostino",                         icon: "fa-github" },
+                { name: "Mercury Transforming Drone",                        tag: "GitHub", tagClass: "github", url: "https://github.com/L42ARO/Mercury-Transforming-Drone",               icon: "fa-github" }
+            ]
+        },
+        {
+            id: 7,
+            title: "Humanoids & Advanced ML",
+            shortTitle: "Humanoids & ML",
+            description: "The final frontier. Integrate reinforcement learning policies trained in massive parallel simulation, deploy dynamic walking algorithms via MPC, and handle complex rigid-body dynamics for full bipedal locomotion.",
+            tools: [
+                { name: "NVIDIA Isaac Lab",      tag: "Tool", tagClass: "tool", url: "https://isaac-sim.github.io/IsaacLab/",  icon: "fa-microchip" },
+                { name: "Drake",                 tag: "Tool", tagClass: "tool", url: "https://drake.mit.edu/",                 icon: "fa-cogs" },
+                { name: "MuJoCo Physics Engine", tag: "Tool", tagClass: "tool", url: "https://mujoco.org/",                   icon: "fa-atom" }
+            ],
+            resources: [
+                { name: "Underactuated Robotics — Russ Tedrake (MIT)", tag: "Website", tagClass: "website", url: "https://underactuated.csail.mit.edu/",                         icon: "fa-book" },
+                { name: "Pinocchio — Rigid Body Dynamics Library",     tag: "GitHub",  tagClass: "github",  url: "https://github.com/stack-of-tasks/pinocchio",                 icon: "fa-github" },
+                { name: "OCS2 — Optimal Control for Legged Robots",   tag: "GitHub",  tagClass: "github",  url: "https://github.com/leggedrobotics/ocs2",                      icon: "fa-github" },
+                { name: "Humanoid-Gym — RobotEra",                    tag: "GitHub",  tagClass: "github",  url: "https://github.com/roboterax/humanoid-gym",                   icon: "fa-github" }
+            ]
         }
+    ];
 
-        // Load saved theme
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        document.body.setAttribute('data-theme', savedTheme);
-        document.getElementById('themeIcon').className = savedTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+    // ════════════════════════════════════════════════
+    //  STATE
+    // ════════════════════════════════════════════════
+    let currentPhase  = 0;
+    let checkedItems  = {};
+    let pendingRender = null;
 
-        // ============================================
-        // MEGA MENU
-        // ============================================
-        function initMegaMenu() {
-            const grid = document.getElementById('megaMenuGrid');
-            grid.innerHTML = phasesData.map(phase => `
-                <div class="mega-menu-item phase-${phase.id}" onclick="showPhase(${phase.id})">
-                    <div class="mega-menu-number phase-${phase.id}">${phase.id}</div>
-                    <div class="mega-menu-content">
-                        <div class="mega-menu-item-title">${phase.shortTitle}</div>
-                        <div class="mega-menu-item-desc">Phase ${phase.id}</div>
-                    </div>
+    // ════════════════════════════════════════════════
+    //  INIT
+    // ════════════════════════════════════════════════
+    document.addEventListener('DOMContentLoaded', () => {
+        checkedItems = JSON.parse(localStorage.getItem('roboticsProgress') || '{}');
+
+        const saved = localStorage.getItem('theme') || 'dark';
+        applyTheme(saved);
+
+        initMegaMenu();
+        showHome();
+    });
+
+    // ════════════════════════════════════════════════
+    //  THEME
+    // ════════════════════════════════════════════════
+    function applyTheme(t) {
+        document.body.setAttribute('data-theme', t);
+        const icon = document.getElementById('themeIcon');
+        if (icon) icon.className = t === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+    }
+
+    function toggleTheme() {
+        const next = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        applyTheme(next);
+        localStorage.setItem('theme', next);
+    }
+
+    // ════════════════════════════════════════════════
+    //  MEGA MENU
+    // ════════════════════════════════════════════════
+    function initMegaMenu() {
+        document.getElementById('megaMenuGrid').innerHTML = phasesData.map(p => `
+            <div class="mega-menu-item ph-${p.id}" onclick="showPhase(${p.id}); closeMegaMenu();">
+                <div class="menu-badge">${p.id}</div>
+                <div>
+                    <div class="menu-text-title">${p.shortTitle}</div>
+                    <div class="menu-text-sub">Phase ${p.id} &nbsp;·&nbsp; ${p.tools.length + p.resources.length} items</div>
                 </div>
-            `).join('');
-        }
+            </div>
+        `).join('');
+    }
 
-        function toggleMegaMenu() {
-            // Mega menu shows on hover via CSS
-        }
+    function toggleMegaMenu(e) {
+        e.stopPropagation();
+        const m = document.getElementById('megaMenu');
+        const btn = document.getElementById('phasesNavBtn');
+        m.classList.toggle('open');
+        btn.classList.toggle('menu-open');
+    }
 
-        // ============================================
-        // NAVIGATION & CONTENT RENDERING
-        // ============================================
-        function showHome() {
-            currentPhase = 0;
-            renderHome();
+    function closeMegaMenu() {
+        document.getElementById('megaMenu').classList.remove('open');
+        document.getElementById('phasesNavBtn').classList.remove('menu-open');
+    }
+
+    document.addEventListener('click', e => {
+        const menu = document.getElementById('megaMenu');
+        if (menu && !e.target.closest('.nav-item')) closeMegaMenu();
+    });
+
+    // ════════════════════════════════════════════════
+    //  NAVIGATION
+    // ════════════════════════════════════════════════
+    function showHome() {
+        currentPhase = 0;
+        if (pendingRender) { clearTimeout(pendingRender); pendingRender = null; }
+        renderHome();
+        updateActivePill();
+    }
+
+    function showPhase(id) {
+        if (currentPhase === id) return;
+        currentPhase = id;
+
+        if (pendingRender) { clearTimeout(pendingRender); pendingRender = null; }
+
+        const container = document.getElementById('mainContainer');
+        const existing  = container.querySelector('.phase-content');
+
+        if (existing) {
+            existing.classList.add('exiting');
+            const target = id;
+            pendingRender = setTimeout(() => {
+                pendingRender = null;
+                renderPhase(target);
+                updateActivePill();
+            }, 250);
+        } else {
+            renderPhase(id);
             updateActivePill();
         }
+    }
 
-        function showPhase(phaseId) {
-            if (currentPhase === phaseId) return;
-            
-            const mainContainer = document.getElementById('mainContainer');
-            const existingContent = mainContainer.querySelector('.phase-content');
-            
-            if (existingContent) {
-                existingContent.classList.add('exiting');
-                setTimeout(() => {
-                    currentPhase = phaseId;
-                    renderPhase(phaseId);
-                    updateActivePill();
-                }, 300);
-            } else {
-                currentPhase = phaseId;
-                renderPhase(phaseId);
-                updateActivePill();
-            }
-        }
+    // ════════════════════════════════════════════════
+    //  RENDER HELPERS
+    // ════════════════════════════════════════════════
+    function pillsHTML(activeId) {
+        return phasesData.map(p => `
+            <div class="phase-pill ph-${p.id} ${p.id === activeId ? 'active' : ''}" onclick="showPhase(${p.id})">
+                <span class="pill-num">${p.id}</span>
+                <span class="pill-text">${p.shortTitle}</span>
+            </div>
+        `).join('');
+    }
 
-        function renderHome() {
-            const mainContainer = document.getElementById('mainContainer');
-            mainContainer.innerHTML = `
-                <div class="phase-content">
-                    <!-- Hero Section -->
-                    <section class="hero">
-                        <div class="hero-badge">
-                            <i class="fas fa-rocket"></i>
-                            <span>Complete Learning Roadmap</span>
-                        </div>
-                        <h1 class="hero-title">Master Robotics from<br>Circuits to Humanoids</h1>
-                        <p class="hero-subtitle">
-                            A comprehensive 7-phase journey guiding you from basic electronics fundamentals 
-                            to building advanced humanoid robots. No prior experience required.
-                        </p>
-                        <div class="hero-stats">
-                            <div class="hero-stat">
-                                <div class="hero-stat-value">7</div>
-                                <div class="hero-stat-label">Phases</div>
-                            </div>
-                            <div class="hero-stat">
-                                <div class="hero-stat-value">50+</div>
-                                <div class="hero-stat-label">Resources</div>
-                            </div>
-                            <div class="hero-stat">
-                                <div class="hero-stat-value">20+</div>
-                                <div class="hero-stat-label">Tools</div>
-                            </div>
-                        </div>
-                    </section>
-                    
-                    <!-- Progress Section -->
-                    <div class="progress-section">
-                        <div class="progress-container">
-                            <div class="progress-header">
-                                <span class="progress-title">Your Progress</span>
-                                <span class="progress-value" id="progressValue">0%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
-                            </div>
-                        </div>
+    function progressHTML() {
+        return `
+            <div class="progress-strip">
+                <div class="progress-inner">
+                    <span class="progress-label">Progress</span>
+                    <div class="progress-track">
+                        <div class="progress-fill" id="progressFill" style="width:0%"></div>
                     </div>
-                    
-                    <!-- Phase Navigation -->
-                    <nav class="phase-nav">
-                        ${phasesData.map(phase => `
-                            <div class="phase-pill phase-${phase.id}" onclick="showPhase(${phase.id})">
-                                <span class="phase-pill-number">${phase.id}</span>
-                                <span class="phase-pill-text">${phase.shortTitle}</span>
-                            </div>
-                        `).join('')}
-                    </nav>
-                    
-                    <!-- Content Area -->
-                    <div class="content-area">
-                        <div class="phase-description" style="text-align: center; padding: 3rem 2rem;">
-                            <i class="fas fa-arrow-up" style="font-size: 2rem; color: var(--phase-3); margin-bottom: 1rem; display: block;"></i>
-                            <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">Select a Phase to Begin</h3>
-                            <p style="color: var(--text-muted);">
-                                Use the navigation pills above or the Phases menu in the header to explore each learning phase.
-                                <br>Track your progress by checking off resources as you complete them.
-                            </p>
-                        </div>
-                        
-                        <!-- Phase Overview Cards -->
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
-                            ${phasesData.map(phase => `
-                                <div class="section-card" onclick="showPhase(${phase.id})" style="cursor: pointer;">
-                                    <div class="section-header" style="background: var(--phase-${phase.id}); color: white;">
-                                        <div class="section-icon" style="background: rgba(255,255,255,0.2);">
-                                            <span style="font-weight: 700;">${phase.id}</span>
-                                        </div>
-                                        <span class="section-title">${phase.shortTitle}</span>
-                                    </div>
-                                    <div class="section-body">
-                                        <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-                                            ${phase.description.substring(0, 120)}...
-                                        </p>
-                                        <div style="margin-top: 1rem; display: flex; gap: 1rem; font-size: 0.8rem; color: var(--text-muted);">
-                                            <span><i class="fas fa-tools"></i> ${phase.tools.length} Tools</span>
-                                            <span><i class="fas fa-book"></i> ${phase.resources.length} Resources</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
+                    <span class="progress-pct" id="progressValue">0%</span>
                 </div>
-            `;
-            updateProgress();
-        }
+            </div>
+        `;
+    }
 
-        function renderPhase(phaseId) {
-            const phase = phasesData.find(p => p.id === phaseId);
-            if (!phase) return;
-            
-            const mainContainer = document.getElementById('mainContainer');
-            mainContainer.innerHTML = `
-                <div class="phase-content">
-                    <!-- Progress Section -->
-                    <div class="progress-section">
-                        <div class="progress-container">
-                            <div class="progress-header">
-                                <span class="progress-title">Your Progress</span>
-                                <span class="progress-value" id="progressValue">0%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
-                            </div>
+    function resourceRowHTML(item, itemId) {
+        const checked = checkedItems[itemId] ? 'checked' : '';
+        return `
+            <div class="resource-row">
+                <div class="check-box ${checked}" onclick="toggleCheck('${itemId}', this)">
+                    <i class="fas fa-check"></i>
+                </div>
+                <span class="res-tag ${item.tagClass}">
+                    <i class="fas ${item.icon}"></i> ${item.tag}
+                </span>
+                <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="res-link">
+                    ${item.name}<i class="fas fa-arrow-up-right-from-square res-link-icon"></i>
+                </a>
+            </div>
+        `;
+    }
+
+    // ════════════════════════════════════════════════
+    //  RENDER HOME
+    // ════════════════════════════════════════════════
+    function renderHome() {
+        const total     = phasesData.reduce((a, p) => a + p.resources.length, 0);
+        const toolCount = phasesData.reduce((a, p) => a + p.tools.length, 0);
+
+        document.getElementById('mainContainer').innerHTML = `
+            <div class="phase-content">
+                <section class="hero">
+                    <div class="hero-eyebrow">
+                        <span class="dot"></span>
+                        Project B.U.I.L.D. &nbsp;·&nbsp; Complete Roadmap
+                    </div>
+                    <h1 class="hero-title">From <em>V=IR</em><br>to Humanoid Robotics</h1>
+                    <p class="hero-subtitle">
+                        Seven phases. Every resource curated, not collected.
+                        Track your progress as you go.
+                    </p>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <div class="hero-stat-value">${phasesData.length}</div>
+                            <div class="hero-stat-label">Phases</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-value">${total}</div>
+                            <div class="hero-stat-label">Resources</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-value">${toolCount}</div>
+                            <div class="hero-stat-label">Tools</div>
                         </div>
                     </div>
-                    
-                    <!-- Phase Navigation -->
-                    <nav class="phase-nav">
+                </section>
+
+                ${progressHTML()}
+
+                <nav class="phase-nav">${pillsHTML(0)}</nav>
+
+                <div class="content-area">
+                    <div class="empty-state">
+                        <div class="empty-state-icon"><i class="fas fa-arrow-up"></i></div>
+                        <div class="empty-state-title">Select a phase to begin</div>
+                        <div class="empty-state-body">
+                            Use the pills above or the Phases menu.<br>
+                            Check items off as you complete them — progress saves automatically.
+                        </div>
+                    </div>
+
+                    <div class="overview-grid">
                         ${phasesData.map(p => `
-                            <div class="phase-pill phase-${p.id} ${p.id === phaseId ? 'active' : ''}" onclick="showPhase(${p.id})">
-                                <span class="phase-pill-number">${p.id}</span>
-                                <span class="phase-pill-text">${p.shortTitle}</span>
+                            <div class="overview-card" onclick="showPhase(${p.id})">
+                                <div class="overview-card-head" style="background:var(--phase-${p.id});">
+                                    <span class="overview-card-num">${p.id}</span>
+                                    <span class="overview-card-title">${p.shortTitle}</span>
+                                </div>
+                                <div class="overview-card-body">
+                                    <p class="overview-card-desc">${p.description.slice(0, 110)}…</p>
+                                    <div class="overview-card-meta">
+                                        <span><i class="fas fa-tools"></i>&nbsp; ${p.tools.length} tools</span>
+                                        <span><i class="fas fa-book"></i>&nbsp; ${p.resources.length} resources</span>
+                                    </div>
+                                </div>
                             </div>
                         `).join('')}
-                    </nav>
-                    
-                    <!-- Content Area -->
-                    <div class="content-area">
-                        <div class="phase-header">
-                            <h1 class="phase-title">
-                                <div class="phase-title-number phase-${phase.id}">${phase.id}</div>
-                                ${phase.title}
-                            </h1>
+                    </div>
+                </div>
+            </div>
+        `;
+        updateProgress();
+    }
+
+    // ════════════════════════════════════════════════
+    //  RENDER PHASE
+    // ════════════════════════════════════════════════
+    function renderPhase(id) {
+        const p = phasesData.find(x => x.id === id);
+        if (!p) return;
+
+        const toolRows = p.tools.map((t, i) => resourceRowHTML(t, `ph${id}-tool-${i}`)).join('');
+        const resRows  = p.resources.map((r, i) => resourceRowHTML(r, `ph${id}-res-${i}`)).join('');
+
+        document.getElementById('mainContainer').innerHTML = `
+            <div class="phase-content ph-${p.id}">
+                ${progressHTML()}
+                <nav class="phase-nav">${pillsHTML(id)}</nav>
+
+                <div class="content-area">
+                    <div class="phase-header">
+                        <div class="phase-eyebrow">Phase ${p.id} of ${phasesData.length}</div>
+                        <div class="phase-heading">
+                            <div class="phase-num-box">${p.id}</div>
+                            <h1 class="phase-title-text">${p.title}</h1>
                         </div>
-                        
-                        <div class="phase-description">
-                            ${phase.description}
+                    </div>
+
+                    <div class="phase-desc">${p.description}</div>
+
+                    <div class="section-card">
+                        <div class="section-head">
+                            <div class="section-icon tools"><i class="fas fa-tools"></i></div>
+                            <span class="section-label">Required Tools & Software</span>
+                            <span class="section-count">${p.tools.length} items</span>
                         </div>
-                        
-                        <!-- Required Tools -->
-                        <div class="section-card">
-                            <div class="section-header">
-                                <div class="section-icon tools">
-                                    <i class="fas fa-tools"></i>
-                                </div>
-                                <span class="section-title">Required Tools & Software</span>
-                            </div>
-                            <div class="section-body">
-                                <div class="resource-list">
-                                    ${phase.tools.map((tool, index) => {
-                                        const itemId = `phase${phaseId}-tool-${index}`;
-                                        const isChecked = checkedItems[itemId] ? 'checked' : '';
-                                        return `
-                                            <div class="resource-item">
-                                                <div class="resource-checkbox ${isChecked}" onclick="toggleCheck('${itemId}', this)">
-                                                    <i class="fas fa-check"></i>
-                                                </div>
-                                                <div class="resource-content">
-                                                    <span class="resource-tag ${tool.tagClass}">
-                                                        <i class="fas ${tool.icon}"></i>
-                                                        ${tool.tag}
-                                                    </span>
-                                                    <a href="${tool.url}" target="_blank" rel="noopener noreferrer" class="resource-link">
-                                                        ${tool.name}
-                                                        <i class="fas fa-external-link-alt" style="font-size: 0.75rem; margin-left: 0.25rem;"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        `;
-                                    }).join('')}
-                                </div>
-                            </div>
+                        <div class="section-body">
+                            <div class="resource-list">${toolRows}</div>
                         </div>
-                        
-                        <!-- Learning Resources -->
-                        <div class="section-card">
-                            <div class="section-header">
-                                <div class="section-icon resources">
-                                    <i class="fas fa-book-open"></i>
-                                </div>
-                                <span class="section-title">Learning Resources</span>
-                            </div>
-                            <div class="section-body">
-                                <div class="resource-list">
-                                    ${phase.resources.map((resource, index) => {
-                                        const itemId = `phase${phaseId}-resource-${index}`;
-                                        const isChecked = checkedItems[itemId] ? 'checked' : '';
-                                        return `
-                                            <div class="resource-item">
-                                                <div class="resource-checkbox ${isChecked}" onclick="toggleCheck('${itemId}', this)">
-                                                    <i class="fas fa-check"></i>
-                                                </div>
-                                                <div class="resource-content">
-                                                    <span class="resource-tag ${resource.tagClass}">
-                                                        <i class="fas ${resource.icon}"></i>
-                                                        ${resource.tag}
-                                                    </span>
-                                                    <a href="${resource.url}" target="_blank" rel="noopener noreferrer" class="resource-link">
-                                                        ${resource.name}
-                                                        <i class="fas fa-external-link-alt" style="font-size: 0.75rem; margin-left: 0.25rem;"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        `;
-                                    }).join('')}
-                                </div>
-                            </div>
+                    </div>
+
+                    <div class="section-card">
+                        <div class="section-head">
+                            <div class="section-icon resources"><i class="fas fa-book-open"></i></div>
+                            <span class="section-label">Learning Resources</span>
+                            <span class="section-count">${p.resources.length} items</span>
+                        </div>
+                        <div class="section-body">
+                            <div class="resource-list">${resRows}</div>
                         </div>
                     </div>
                 </div>
-            `;
-            updateProgress();
-        }
+            </div>
+        `;
+        updateProgress();
+    }
 
-        function updateActivePill() {
-            document.querySelectorAll('.phase-pill').forEach(pill => {
-                pill.classList.remove('active');
-            });
-            if (currentPhase > 0) {
-                document.querySelectorAll(`.phase-pill.phase-${currentPhase}`).forEach(pill => {
-                    pill.classList.add('active');
-                });
-            }
+    // ════════════════════════════════════════════════
+    //  ACTIVE PILL
+    // ════════════════════════════════════════════════
+    function updateActivePill() {
+        document.querySelectorAll('.phase-pill').forEach(el => el.classList.remove('active'));
+        if (currentPhase > 0) {
+            document.querySelectorAll(`.phase-pill.ph-${currentPhase}`).forEach(el => el.classList.add('active'));
         }
+    }
 
-        // ============================================
-        // PROGRESS TRACKING
-        // ============================================
-        function toggleCheck(itemId, checkboxElement) {
-            checkboxElement.classList.toggle('checked');
-            
-            if (checkboxElement.classList.contains('checked')) {
-                checkedItems[itemId] = true;
-            } else {
-                delete checkedItems[itemId];
-            }
-            
-            localStorage.setItem('roboticsProgress', JSON.stringify(checkedItems));
-            updateProgress();
+    // ════════════════════════════════════════════════
+    //  PROGRESS
+    // ════════════════════════════════════════════════
+    function toggleCheck(itemId, el) {
+        el.classList.toggle('checked');
+        checkedItems[itemId] = el.classList.contains('checked') ? true : undefined;
+        if (!checkedItems[itemId]) delete checkedItems[itemId];
+        localStorage.setItem('roboticsProgress', JSON.stringify(checkedItems));
+        updateProgress();
+    }
+
+    function updateProgress() {
+        const total     = phasesData.reduce((a, p) => a + p.tools.length + p.resources.length, 0);
+        const completed = Object.keys(checkedItems).length;
+        const pct       = total ? Math.round((completed / total) * 100) : 0;
+        const valEl     = document.getElementById('progressValue');
+        const fillEl    = document.getElementById('progressFill');
+        if (valEl)  valEl.textContent  = `${pct}%`;
+        if (fillEl) fillEl.style.width = `${pct}%`;
+    }
+
+    // ════════════════════════════════════════════════
+    //  KEYBOARD
+    // ════════════════════════════════════════════════
+    document.addEventListener('keydown', e => {
+        const max = phasesData.length;
+        if (e.key === 'ArrowLeft'  && currentPhase > 1)   showPhase(currentPhase - 1);
+        if (e.key === 'ArrowRight' && currentPhase < max)  showPhase(currentPhase + 1);
+        if (e.key === 'Escape') {
+            if (document.getElementById('megaMenu').classList.contains('open')) closeMegaMenu();
+            else if (currentPhase > 0) showHome();
         }
-
-        function updateProgress() {
-            const totalItems = phasesData.reduce((acc, phase) => {
-                return acc + phase.tools.length + phase.resources.length;
-            }, 0);
-            
-            const completedItems = Object.keys(checkedItems).length;
-            const percentage = Math.round((completedItems / totalItems) * 100);
-            
-            const progressValue = document.getElementById('progressValue');
-            const progressFill = document.getElementById('progressFill');
-            
-            if (progressValue && progressFill) {
-                progressValue.textContent = `${percentage}%`;
-                progressFill.style.width = `${percentage}%`;
-            }
-        }
-
-        // ============================================
-        // KEYBOARD NAVIGATION
-        // ============================================
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft' && currentPhase > 1) {
-                showPhase(currentPhase - 1);
-            } else if (e.key === 'ArrowRight' && currentPhase < 7) {
-                showPhase(currentPhase + 1);
-            } else if (e.key === 'Escape' && currentPhase > 0) {
-                showHome();
-            }
-        });
+    });
     </script>
 </body>
 </html>
