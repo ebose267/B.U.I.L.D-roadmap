@@ -3,17 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Alix Robotics Mastery Roadmap | From Circuits to Humanoids</title>
+    <title>Alix Robotics Mastery Roadmap | From Circuits to Humanoids</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Clash Display for headings (geometric, editorial) + DM Mono for code/labels + Lora for body -->
-    <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-    <!-- Fallback if Clash Display isn't available via Google yet — use Outfit -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            /* Phase spectrum — deep to intense */
             --phase-1: #6B3FA0;
             --phase-2: #2B4A8C;
             --phase-3: #1A6E8C;
@@ -22,7 +18,6 @@
             --phase-6: #C04A1E;
             --phase-7: #A01828;
 
-            /* Dark theme (default) */
             --bg-base:      #0C0C0F;
             --bg-surface:   #131318;
             --bg-raised:    #1A1A22;
@@ -35,12 +30,10 @@
             --border-mid:   rgba(255,255,255,0.12);
             --grid-color:   rgba(255,255,255,0.035);
             --shadow:       rgba(0,0,0,0.6);
-
-            /* Accent */
             --accent:       #5B8CFF;
             --accent-dim:   rgba(91,140,255,0.15);
 
-            --font-display: 'Outfit', 'Clash Display', sans-serif;
+            --font-display: 'Outfit', sans-serif;
             --font-body:    'Lora', Georgia, serif;
             --font-mono:    'DM Mono', 'JetBrains Mono', monospace;
         }
@@ -65,7 +58,6 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
 
-        /* ─── GRID BACKGROUND ─── */
         body {
             font-family: var(--font-body);
             background-color: var(--bg-base);
@@ -88,7 +80,6 @@
             z-index: 0;
         }
 
-        /* Subtle vignette over grid */
         body::after {
             content: '';
             position: fixed;
@@ -98,7 +89,6 @@
             z-index: 0;
         }
 
-        /* Everything above the grid */
         header, main, footer, .phase-nav { position: relative; z-index: 1; }
 
         /* ─── HEADER ─── */
@@ -117,7 +107,6 @@
             -webkit-backdrop-filter: blur(16px);
         }
 
-        /* Alix Logo */
         .logo {
             display: flex;
             align-items: center;
@@ -134,18 +123,7 @@
             transition: filter 0.3s;
         }
 
-        .logo:hover .logo-img {
-            filter: drop-shadow(0 0 14px rgba(91,140,255,0.5));
-        }
-
-        .logo-wordmark {
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 1.05rem;
-            letter-spacing: 0.04em;
-            color: var(--text-1);
-            opacity: 0.85;
-        }
+        .logo:hover .logo-img { filter: drop-shadow(0 0 14px rgba(91,140,255,0.5)); }
 
         .logo-divider {
             width: 1px;
@@ -162,7 +140,6 @@
             color: var(--text-3);
         }
 
-        /* Nav */
         .nav-container {
             display: flex;
             align-items: center;
@@ -200,7 +177,6 @@
         .nav-item:hover .nav-link .chevron,
         .nav-link.menu-open .chevron { transform: rotate(180deg); }
 
-        /* Theme toggle */
         .theme-toggle {
             width: 52px; height: 28px;
             background: var(--bg-raised);
@@ -234,12 +210,12 @@
 
         /* ─── MEGA MENU ─── */
         .mega-menu {
-            position: absolute;
-            top: calc(100% + 8px);
-            left: 50%;
-            transform: translateX(-50%) translateY(-6px);
-            width: 680px;
-            max-width: 92vw;
+            position: fixed;
+            top: 74px;
+            right: 1rem;
+            left: auto;
+            transform: translateY(-6px);
+            width: min(680px, calc(100vw - 2rem));
             background: var(--bg-surface);
             border: 1px solid var(--border-mid);
             border-radius: 14px;
@@ -248,14 +224,15 @@
             visibility: hidden;
             transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
             box-shadow: 0 24px 64px var(--shadow);
-            z-index: 999;
+            z-index: 1001;
+            max-height: calc(100vh - 90px);
+            overflow-y: auto;
         }
 
-        .nav-item:hover .mega-menu,
         .mega-menu.open {
             opacity: 1;
             visibility: visible;
-            transform: translateX(-50%) translateY(0);
+            transform: translateY(0);
         }
 
         .mega-menu-label {
@@ -329,7 +306,7 @@
             letter-spacing: 0.05em;
         }
 
-        /* ─── MAIN CONTAINER ─── */
+        /* ─── MAIN ─── */
         .main-container {
             margin-top: 66px;
             min-height: calc(100vh - 66px);
@@ -468,7 +445,7 @@
             text-align: right;
         }
 
-        /* ─── PHASE NAV PILLS ─── */
+        /* ─── PHASE NAV ─── */
         .phase-nav {
             display: flex;
             justify-content: center;
@@ -530,7 +507,6 @@
             margin: 0 auto;
         }
 
-        /* Phase animations */
         .phase-content { animation: rise 0.4s cubic-bezier(0.16,1,0.3,1); }
 
         @keyframes rise {
@@ -545,7 +521,7 @@
 
         .phase-content.exiting { animation: fall 0.25s ease forwards; }
 
-        /* Phase title */
+        /* Phase header */
         .phase-eyebrow {
             font-family: var(--font-mono);
             font-size: 0.65rem;
@@ -590,6 +566,77 @@
             line-height: 1.15;
         }
 
+        /* Phase summary strip */
+        .phase-summary-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .summary-chip {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.85rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .summary-chip-label {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-3);
+        }
+
+        .summary-chip-value {
+            font-family: var(--font-display);
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-1);
+        }
+
+        /* Phase completion outcome */
+        .completion-banner {
+            padding: 1rem 1.25rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 1.75rem;
+            display: flex;
+            gap: 0.85rem;
+            align-items: flex-start;
+        }
+
+        .completion-banner-icon {
+            width: 36px; height: 36px;
+            border-radius: 8px;
+            background: var(--bg-raised);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .completion-banner-text {
+            font-family: var(--font-body);
+            font-size: 0.92rem;
+            line-height: 1.7;
+            color: var(--text-2);
+        }
+
+        .completion-banner-title {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 0.82rem;
+            color: var(--text-1);
+            margin-bottom: 0.25rem;
+            letter-spacing: 0.01em;
+        }
+
         .phase-desc {
             font-family: var(--font-body);
             font-size: 0.97rem;
@@ -618,6 +665,8 @@
             padding: 1rem 1.25rem;
             background: var(--bg-raised);
             border-bottom: 1px solid var(--border);
+            cursor: pointer;
+            user-select: none;
         }
 
         .section-icon {
@@ -626,10 +675,15 @@
             display: flex; align-items: center; justify-content: center;
             font-size: 0.85rem;
             color: white;
+            flex-shrink: 0;
         }
 
-        .section-icon.tools { background: var(--phase-3); }
-        .section-icon.resources { background: var(--phase-5); }
+        .section-icon.tools      { background: var(--phase-3); }
+        .section-icon.resources  { background: var(--phase-5); }
+        .section-icon.project    { background: var(--phase-6); }
+        .section-icon.proof      { background: var(--phase-4); }
+        .section-icon.career     { background: var(--phase-2); }
+        .section-icon.mistakes   { background: var(--phase-7); }
 
         .section-label {
             font-family: var(--font-display);
@@ -645,6 +699,16 @@
             color: var(--text-3);
             letter-spacing: 0.1em;
         }
+
+        .section-toggle {
+            font-size: 0.65rem;
+            color: var(--text-3);
+            margin-left: 0.5rem;
+            transition: transform 0.2s;
+        }
+
+        .section-card.collapsed .section-toggle { transform: rotate(-90deg); }
+        .section-card.collapsed .section-body { display: none; }
 
         .section-body { padding: 0.75rem; }
 
@@ -666,7 +730,6 @@
             border-color: var(--border);
         }
 
-        /* Checkbox */
         .check-box {
             width: 20px; height: 20px;
             border: 1.5px solid var(--border-mid);
@@ -693,7 +756,6 @@
 
         .check-box.checked i { opacity: 1; }
 
-        /* Tag */
         .res-tag {
             display: inline-flex;
             align-items: center;
@@ -716,7 +778,6 @@
         .res-tag.hardware { background: rgba(184,137,26,0.12); color: #C8A030; border: 1px solid rgba(184,137,26,0.25); }
         .res-tag.pdf      { background: rgba(160,24,40,0.12);  color: #D43050; border: 1px solid rgba(160,24,40,0.25); }
 
-        /* Link */
         .res-link {
             font-family: var(--font-body);
             font-size: 0.9rem;
@@ -735,7 +796,254 @@
             opacity: 0.4;
         }
 
-        /* ─── HOME OVERVIEW CARDS ─── */
+        /* ─── CHECKPOINT PROJECT ─── */
+        .project-card {
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .project-header {
+            padding: 1.1rem 1.25rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .project-num {
+            width: 36px; height: 36px;
+            border-radius: 8px;
+            background: var(--phase-6);
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 0.85rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .project-title {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--text-1);
+            line-height: 1.3;
+        }
+
+        .project-objective {
+            font-family: var(--font-body);
+            font-size: 0.88rem;
+            color: var(--text-2);
+            line-height: 1.65;
+            margin-top: 0.3rem;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .project-cell {
+            padding: 1rem 1.25rem;
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .project-cell:nth-child(even) { border-right: none; }
+        .project-cell:nth-last-child(-n+2) { border-bottom: none; }
+
+        .project-cell-label {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-3);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-cell-content {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            color: var(--text-2);
+            line-height: 1.6;
+        }
+
+        .project-cell-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .project-cell-content ul li {
+            padding: 0.2rem 0;
+            padding-left: 1.1rem;
+            position: relative;
+        }
+
+        .project-cell-content ul li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--text-3);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+        }
+
+        .project-dod {
+            padding: 0.85rem 1.25rem;
+            border-top: 1px solid var(--border);
+            background: rgba(26,122,82,0.06);
+            border-left: 3px solid var(--phase-4);
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-start;
+        }
+
+        .project-dod-label {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--phase-4);
+            white-space: nowrap;
+            margin-top: 1px;
+        }
+
+        .project-dod-text {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            color: var(--text-2);
+            line-height: 1.6;
+        }
+
+        .project-stretch {
+            padding: 0.75rem 1.25rem;
+            border-top: 1px solid var(--border);
+            background: var(--bg-raised);
+        }
+
+        .project-stretch-label {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.4rem;
+        }
+
+        .project-stretch-content {
+            font-family: var(--font-body);
+            font-size: 0.83rem;
+            color: var(--text-2);
+            line-height: 1.6;
+        }
+
+        /* ─── PROOF OF WORK ─── */
+        .proof-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 0.6rem;
+            padding: 0.75rem;
+        }
+
+        .proof-item {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            padding: 0.7rem 0.85rem;
+            background: var(--bg-raised);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+
+        .proof-item-icon {
+            width: 28px; height: 28px;
+            border-radius: 6px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.75rem;
+            color: var(--phase-4);
+            flex-shrink: 0;
+        }
+
+        .proof-item-text {
+            font-family: var(--font-body);
+            font-size: 0.82rem;
+            color: var(--text-2);
+            line-height: 1.4;
+        }
+
+        /* ─── CAREER OUTCOMES ─── */
+        .career-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            padding: 0.75rem;
+        }
+
+        .career-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.4rem 0.85rem;
+            background: var(--bg-raised);
+            border: 1px solid var(--border-mid);
+            border-radius: 100px;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-2);
+            letter-spacing: 0.04em;
+            transition: background 0.15s, color 0.15s;
+        }
+
+        .career-tag:hover {
+            background: var(--bg-hover);
+            color: var(--text-1);
+        }
+
+        .career-tag i {
+            font-size: 0.6rem;
+            color: var(--text-3);
+        }
+
+        /* ─── MISTAKES ─── */
+        .mistake-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .mistake-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.85rem;
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mistake-item:last-child { border-bottom: none; }
+
+        .mistake-icon {
+            width: 22px; height: 22px;
+            border-radius: 50%;
+            background: rgba(160,24,40,0.15);
+            border: 1px solid rgba(160,24,40,0.3);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.55rem;
+            color: #D43050;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .mistake-text {
+            font-family: var(--font-body);
+            font-size: 0.86rem;
+            color: var(--text-2);
+            line-height: 1.6;
+        }
+
+        /* ─── OVERVIEW CARDS ─── */
         .overview-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
@@ -801,6 +1109,21 @@
             color: var(--text-3);
         }
 
+        .overview-card-project {
+            margin-top: 0.7rem;
+            padding-top: 0.7rem;
+            border-top: 1px solid var(--border);
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--text-3);
+            letter-spacing: 0.06em;
+        }
+
+        .overview-card-project span {
+            color: var(--phase-6);
+            font-weight: 500;
+        }
+
         /* ─── EMPTY STATE ─── */
         .empty-state {
             text-align: center;
@@ -852,47 +1175,60 @@
         .footer-heart { color: var(--phase-7); }
 
         /* ─── RESPONSIVE ─── */
+        @media (max-width: 1024px) {
+            .mega-menu {
+                right: 0.75rem;
+                width: min(620px, calc(100vw - 1.5rem));
+            }
+        }
+
         @media (max-width: 768px) {
             .header { padding: 0 1rem; }
             .nav-container { gap: 0.75rem; }
-            .logo-wordmark, .logo-divider, .logo-sub { display: none; }
+            .logo-divider, .logo-sub { display: none; }
 
             .mega-menu {
-                width: 96vw;
-                left: 2%;
-                /* On mobile: kill the translateX so menu doesn't go off-screen */
-                transform: translateY(-6px);
+                position: fixed;
+                top: auto;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                border-radius: 18px 18px 0 0;
+                border-bottom: none;
+                transform: translateY(10px);
+                max-height: 75vh;
+                overflow-y: auto;
+                padding: 1.5rem 1rem 2rem;
             }
 
-            .mega-menu.open,
-            .nav-item:hover .mega-menu {
-                transform: translateY(0);
-                opacity: 1;
-                visibility: visible;
+            .mega-menu::before {
+                content: '';
+                display: block;
+                width: 36px;
+                height: 4px;
+                background: var(--border-mid);
+                border-radius: 2px;
+                margin: 0 auto 1.1rem;
             }
 
-            /* Prevent hover from showing on mobile (touch devices) */
-            @media (hover: none) {
-                .nav-item:hover .mega-menu:not(.open) {
-                    opacity: 0;
-                    visibility: hidden;
-                    transform: translateY(-6px);
-                }
-            }
+            .mega-menu.open { transform: translateY(0); }
 
             .mega-menu-grid { grid-template-columns: 1fr; }
-
             .phase-nav { padding: 0.75rem 1rem; }
             .phase-pill .pill-text { display: none; }
             .phase-pill { padding: 0.45rem 0.6rem; }
-
             .content-area { padding: 1.25rem 1rem; }
             .phase-title-text { font-size: 1.3rem; }
             .hero { padding: 3rem 1.25rem 2.5rem; }
-            .hero-stats { gap: 2rem; }
+            .hero-stats { gap: 1.5rem; }
+            .hero-stat-value { font-size: 1.75rem; }
+            .phase-summary-strip { grid-template-columns: 1fr; }
+            .project-grid { grid-template-columns: 1fr; }
+            .project-cell { border-right: none !important; }
+            .proof-grid { grid-template-columns: 1fr 1fr; }
         }
 
-        /* Scrollbar */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg-base); }
         ::-webkit-scrollbar-thumb { background: var(--border-mid); border-radius: 3px; }
@@ -902,15 +1238,12 @@
 </head>
 <body data-theme="dark">
 
-    <!-- ─── HEADER ─── -->
+    <div id="megaMenuBackdrop" onclick="closeMegaMenu()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:1000;"></div>
     <header class="header">
         <a href="javascript:void(0)" class="logo" onclick="showHome()">
-            <img
-                class="logo-img"
+            <img class="logo-img"
                 src="https://res.cloudinary.com/dc2gwj09q/image/upload/f_auto,q_auto/Alix_Logo-removebg-preview_aykhme"
-                alt="Alix"
-                onerror="this.style.display='none'"
-            >
+                alt="Alix" onerror="this.style.display='none'">
             <div class="logo-divider"></div>
             <span class="logo-sub">Alix Robotics Portal</span>
         </a>
@@ -936,155 +1269,381 @@
         </nav>
     </header>
 
-    <!-- ─── MAIN ─── -->
     <main class="main-container" id="mainContainer"></main>
 
-    <!-- ─── FOOTER ─── -->
     <footer class="footer">
         <p class="footer-text">
-            Built with <i class="fas fa-heart footer-heart"></i> for aspiring roboticists &nbsp;·&nbsp; Project B.U.I.L.D.
+            Built with <i class="fas fa-heart footer-heart"></i> for serious builders &nbsp;·&nbsp; Project B.U.I.L.D. &nbsp;·&nbsp; Alix
         </p>
     </footer>
 
     <script>
     // ════════════════════════════════════════════════
-    //  DATA
+    //  DATA — FULL PHASE MODEL
     // ════════════════════════════════════════════════
     const phasesData = [
         {
             id: 1,
             title: "Physics & Hardware Fundamentals",
             shortTitle: "Physics & Hardware",
-            description: "Before writing any code, you must understand how electrons flow and how hardware components manipulate that flow. Master Circuit Theory (Ohm's Law, Kirchhoff's Laws), Passive & Active Components, and Digital Logic Design. Get comfortable with a multimeter, oscilloscope, and soldering iron.",
+            skillLevel: "Foundation",
+            description: "Before writing any code, you must understand how electrons flow and how components manipulate that flow. Master Circuit Theory (Ohm's Law, Kirchhoff's Laws), passive and active components, and digital logic. Get comfortable with a multimeter, oscilloscope, and soldering iron. This phase determines the ceiling of everything that follows.",
+            coreFocus: ["DC/AC circuit analysis", "Passive components — R, L, C", "Transistors & op-amps", "Digital logic gates & Boolean algebra", "Signal types, frequency, waveforms", "Soldering & breadboarding", "Reading component datasheets"],
+            completionOutcome: "You can analyze any circuit on paper, build it on a breadboard, and debug it with test equipment. You are not guessing what components do — you know.",
             tools: [
-                { name: "TinkerCAD",            tag: "Tool",    tagClass: "tool",    url: "https://www.tinkercad.com/",           icon: "fa-cube" },
-                { name: "Proteus Design Suite",  tag: "Tool",    tagClass: "tool",    url: "https://www.labcenter.com/",           icon: "fa-microchip" },
-                { name: "KiCad",                 tag: "Tool",    tagClass: "tool",    url: "https://www.kicad.org/",               icon: "fa-drafting-compass" },
-                { name: "LTspice",               tag: "Tool",    tagClass: "tool",    url: "https://www.analog.com/en/resources/design-tools-and-calculators/ltspice-simulator.html", icon: "fa-wave-square" }
+                { name: "TinkerCAD Circuits", tag: "Tool", tagClass: "tool", url: "https://www.tinkercad.com/", icon: "fa-cube" },
+                { name: "Proteus Design Suite", tag: "Tool", tagClass: "tool", url: "https://www.labcenter.com/", icon: "fa-microchip" },
+                { name: "KiCad", tag: "Tool", tagClass: "tool", url: "https://www.kicad.org/", icon: "fa-drafting-compass" },
+                { name: "LTspice", tag: "Tool", tagClass: "tool", url: "https://www.analog.com/en/resources/design-tools-and-calculators/ltspice-simulator.html", icon: "fa-wave-square" },
+                { name: "Multimeter (physical)", tag: "Hardware", tagClass: "hardware", url: "#", icon: "fa-tachometer-alt" }
             ],
             resources: [
-                { name: "CircuitBread",                        tag: "Website", tagClass: "website", url: "https://www.circuitbread.com/",                                                       icon: "fa-globe" },
-                { name: "Electronics Tutorials",               tag: "Website", tagClass: "website", url: "https://www.electronics-tutorials.ws/",                                               icon: "fa-globe" },
-                { name: "MIT 6.002 — Circuits & Electronics",  tag: "Course",  tagClass: "course",  url: "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/",             icon: "fa-graduation-cap" },
-                { name: "Ben Eater's 8-bit Breadboard Computer",tag: "Video",  tagClass: "video",   url: "https://eater.net/8bit",                                                              icon: "fa-play-circle" },
-                { name: "All About Circuits — Video Tutorials", tag: "Video",  tagClass: "video",   url: "https://www.allaboutcircuits.com/video-tutorials/",                                   icon: "fa-play-circle" },
-                { name: "Electronics Basics Playlist",          tag: "Video",  tagClass: "video",   url: "https://www.youtube.com/playlist?list=PLAROrg3NQn7cyu01HpOv5BWo217XWBZu0",          icon: "fa-play-circle" },
-                { name: "Nerdshed Arduino Starter Kit (Nigeria)",tag: "Hardware",tagClass:"hardware",url: "https://nerdshed.com.ng/arduino-kit/",                                               icon: "fa-toolbox" }
-            ]
+                { name: "CircuitBread", tag: "Website", tagClass: "website", url: "https://www.circuitbread.com/", icon: "fa-globe" },
+                { name: "Electronics Tutorials", tag: "Website", tagClass: "website", url: "https://www.electronics-tutorials.ws/", icon: "fa-globe" },
+                { name: "MIT 6.002 — Circuits & Electronics", tag: "Course", tagClass: "course", url: "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/", icon: "fa-graduation-cap" },
+                { name: "Ben Eater's 8-bit Breadboard Computer", tag: "Video", tagClass: "video", url: "https://eater.net/8bit", icon: "fa-play-circle" },
+                { name: "All About Circuits — Video Tutorials", tag: "Video", tagClass: "video", url: "https://www.allaboutcircuits.com/video-tutorials/", icon: "fa-play-circle" },
+                { name: "Electronics Basics Playlist", tag: "Video", tagClass: "video", url: "https://www.youtube.com/playlist?list=PLAROrg3NQn7cyu01HpOv5BWo217XWBZu0", icon: "fa-play-circle" },
+                { name: "Nerdshed Arduino Starter Kit (Nigeria)", tag: "Hardware", tagClass: "hardware", url: "https://nerdshed.com.ng/arduino-kit/", icon: "fa-toolbox" }
+            ],
+            checkpointProject: {
+                title: "Automated LED Brightness Controller with Fault Detection",
+                objective: "Design and build a circuit that uses a transistor to PWM-control LED brightness from an LDR (light-dependent resistor) input, and triggers a buzzer alarm when a threshold voltage is exceeded. Simulate it first, then build on a breadboard.",
+                requiredSkills: ["Ohm's Law & voltage dividers", "Transistor as a switch", "LDR & op-amp comparator", "Basic oscilloscope use"],
+                suggestedTools: ["TinkerCAD (simulation)", "LTspice (waveform analysis)", "Breadboard + physical components"],
+                deliverables: [
+                    "Schematic diagram (hand-drawn or KiCad)",
+                    "TinkerCAD simulation screenshot",
+                    "Physical build photo",
+                    "Oscilloscope capture of PWM signal",
+                    "Short write-up explaining design decisions"
+                ],
+                definitionOfDone: "The circuit works on a breadboard, you can explain every component's role without referring to notes, and you have a schematic + oscilloscope capture documented.",
+                stretchGoal: "Add a 7-segment display to show the ambient light level as a numeric value. Design the PCB layout in KiCad."
+            },
+            proofOfWork: [
+                { text: "GitHub repo with schematic, simulation file, and build photos", icon: "fa-github" },
+                { text: "LinkedIn post: 'My first hardware build — what I learned'", icon: "fa-linkedin" },
+                { text: "Oscilloscope capture uploaded as image or short video", icon: "fa-camera" },
+                { text: "Written circuit analysis document (1–2 pages)", icon: "fa-file-alt" }
+            ],
+            mistakesToAvoid: [
+                "Skipping simulation and going straight to hardware — burn components, waste money.",
+                "Memorising formulas without understanding what current and voltage physically represent.",
+                "Not reading the datasheet before using any IC or transistor.",
+                "Ignoring signal integrity at this stage — bad habits form early."
+            ],
+            careerOutcomes: ["Hardware Engineer", "PCB Designer", "Electronics Technician", "Test & Validation Engineer", "Power Electronics Engineer"]
         },
         {
             id: 2,
             title: "Microcontrollers & Bare-Metal C/C++",
             shortTitle: "Microcontrollers",
-            description: "This is where hardware meets software. Step away from Arduino abstractions. Master C/C++, pointers, memory addresses, and bitwise operations. Learn to read datasheets, manipulate memory registers, and use Interrupts, Timers, and PWM. Master UART, I2C, and SPI.",
+            skillLevel: "Practice",
+            description: "This is where hardware meets software. Step away from Arduino abstractions. Master C/C++, pointers, memory addresses, and bitwise operations. Learn to read datasheets, manipulate registers directly, and work with Interrupts, Timers, and PWM at the hardware level. Master UART, I2C, and SPI communication protocols.",
+            coreFocus: ["C/C++ fundamentals — pointers, structs, memory", "GPIO, ADC, DAC registers", "Interrupts and ISR writing", "Hardware timers and PWM generation", "UART, I2C, SPI communication", "Bootloaders and flash memory", "Datasheet reading"],
+            completionOutcome: "You can write firmware from scratch for STM32 or AVR without relying on Arduino libraries. You understand the register-level operations behind every HAL abstraction.",
             tools: [
-                { name: "Wokwi",        tag: "Tool", tagClass: "tool", url: "https://wokwi.com/",                                        icon: "fa-laptop-code" },
-                { name: "PlatformIO",   tag: "Tool", tagClass: "tool", url: "https://platformio.org/",                                   icon: "fa-code" },
-                { name: "STM32CubeIDE", tag: "Tool", tagClass: "tool", url: "https://www.st.com/en/development-tools/stm32cubeide.html", icon: "fa-microchip" }
+                { name: "Wokwi", tag: "Tool", tagClass: "tool", url: "https://wokwi.com/", icon: "fa-laptop-code" },
+                { name: "PlatformIO", tag: "Tool", tagClass: "tool", url: "https://platformio.org/", icon: "fa-code" },
+                { name: "STM32CubeIDE", tag: "Tool", tagClass: "tool", url: "https://www.st.com/en/development-tools/stm32cubeide.html", icon: "fa-microchip" },
+                { name: "STM32 Nucleo or Discovery Board", tag: "Hardware", tagClass: "hardware", url: "https://www.st.com/en/evaluation-tools/stm32-nucleo-boards.html", icon: "fa-microchip" }
             ],
             resources: [
-                { name: "Bare Metal Programming Guide — Sergey Lyubka", tag: "GitHub",  tagClass: "github",  url: "https://github.com/cpq/bare-metal-programming-guide",                                                        icon: "fa-github" },
-                { name: "Phil's Lab",                                    tag: "Video",   tagClass: "video",   url: "https://www.youtube.com/@PhilsLab",                                                                         icon: "fa-play-circle" },
-                { name: "Learn C++",                                     tag: "Website", tagClass: "website", url: "https://www.learncpp.com/",                                                                                 icon: "fa-globe" },
-                { name: "Codecademy — Learn C++",                        tag: "Course",  tagClass: "course",  url: "https://www.codecademy.com/learn/learn-c-plus-plus",                                                       icon: "fa-graduation-cap" },
-                { name: "C++ Full Course — freeCodeCamp",                tag: "Video",   tagClass: "video",   url: "https://www.youtube.com/watch?v=vLnPwxZdW4Y",                                                             icon: "fa-play-circle" },
-                { name: "The Cherno — C++ Tutorial Series",              tag: "Video",   tagClass: "video",   url: "https://www.youtube.com/playlist?list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb",                               icon: "fa-play-circle" },
-                { name: "ControllersTech",                               tag: "Website", tagClass: "website", url: "https://controllerstech.com/",                                                                             icon: "fa-globe" },
-                { name: "Learn Embedded Systems",                        tag: "Website", tagClass: "website", url: "https://learnembeddedsystems.co.uk/",                                                                     icon: "fa-globe" },
-                { name: "Embedded C for Beginners — Cursa",              tag: "Course",  tagClass: "course",  url: "https://cursa.app/en/free-course/embedded-c-programming-course-for-beginners-efcb",                       icon: "fa-graduation-cap" },
-                { name: "Embedded Systems Free Course — Simplilearn",    tag: "Course",  tagClass: "course",  url: "https://www.simplilearn.com/embedded-systems-course-online-free-skillup",                                 icon: "fa-graduation-cap" },
-                { name: "Arduino Tutorial Basics — Udemy Blog",          tag: "Website", tagClass: "website", url: "https://blog.udemy.com/arduino-tutorial-learn-the-basics/",                                               icon: "fa-globe" },
-                { name: "IoT Home Automation with Arduino & ESP32 — Udemy",tag:"Course", tagClass: "course",  url: "https://www.udemy.com/course/iot-home-automation-arduino-esp32/",                                         icon: "fa-graduation-cap" },
-                { name: "Arduino Lessons Playlist",                       tag: "Video",  tagClass: "video",   url: "https://www.youtube.com/playlist?list=PLGs0VKk2DiYx6CMdOQR_hmJ2NbB4mZQn-",                               icon: "fa-play-circle" },
-                { name: "Arduino with Python Playlist",                   tag: "Video",  tagClass: "video",   url: "https://www.youtube.com/playlist?list=PLGs0VKk2DiYylFUUMMv9WiL3x3tpscDUQ",                               icon: "fa-play-circle" }
-            ]
+                { name: "Bare Metal Programming Guide — Sergey Lyubka", tag: "GitHub", tagClass: "github", url: "https://github.com/cpq/bare-metal-programming-guide", icon: "fa-github" },
+                { name: "Phil's Lab", tag: "Video", tagClass: "video", url: "https://www.youtube.com/@PhilsLab", icon: "fa-play-circle" },
+                { name: "Learn C++", tag: "Website", tagClass: "website", url: "https://www.learncpp.com/", icon: "fa-globe" },
+                { name: "Codecademy — Learn C++", tag: "Course", tagClass: "course", url: "https://www.codecademy.com/learn/learn-c-plus-plus", icon: "fa-graduation-cap" },
+                { name: "C++ Full Course — freeCodeCamp", tag: "Video", tagClass: "video", url: "https://www.youtube.com/watch?v=vLnPwxZdW4Y", icon: "fa-play-circle" },
+                { name: "The Cherno — C++ Tutorial Series", tag: "Video", tagClass: "video", url: "https://www.youtube.com/playlist?list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb", icon: "fa-play-circle" },
+                { name: "ControllersTech", tag: "Website", tagClass: "website", url: "https://controllerstech.com/", icon: "fa-globe" },
+                { name: "Learn Embedded Systems", tag: "Website", tagClass: "website", url: "https://learnembeddedsystems.co.uk/", icon: "fa-globe" },
+                { name: "Embedded C for Beginners — Cursa", tag: "Course", tagClass: "course", url: "https://cursa.app/en/free-course/embedded-c-programming-course-for-beginners-efcb", icon: "fa-graduation-cap" },
+                { name: "Arduino Lessons Playlist", tag: "Video", tagClass: "video", url: "https://www.youtube.com/playlist?list=PLGs0VKk2DiYx6CMdOQR_hmJ2NbB4mZQn-", icon: "fa-play-circle" },
+                { name: "IoT Home Automation with Arduino & ESP32 — Udemy", tag: "Course", tagClass: "course", url: "https://www.udemy.com/course/iot-home-automation-arduino-esp32/", icon: "fa-graduation-cap" }
+            ],
+            checkpointProject: {
+                title: "Multi-Sensor Data Logger with Serial Monitoring",
+                objective: "Build a bare-metal firmware system on STM32 (no HAL) that reads temperature from an I2C sensor, reads an analog voltage via ADC, drives a PWM output based on the readings, and streams all values over UART to a terminal. Use a hardware timer interrupt for periodic sampling — no delay() calls.",
+                requiredSkills: ["Register-level GPIO and ADC config", "I2C protocol implementation", "Hardware timer interrupts", "UART transmission", "Bitwise operations"],
+                suggestedTools: ["STM32CubeIDE or PlatformIO", "STM32 Nucleo board", "DS18B20 or SHT31 sensor", "Logic analyser (if available)"],
+                deliverables: [
+                    "Bare-metal C firmware repo on GitHub",
+                    "UART serial log screenshot showing live data",
+                    "Interrupt service routine code with comments",
+                    "Wiring diagram or schematic",
+                    "README with architecture explanation"
+                ],
+                definitionOfDone: "System runs continuously, samples sensors every 500ms via timer interrupt, outputs correctly formatted UART data, and you can explain every line of the startup code.",
+                stretchGoal: "Add an SD card logger over SPI. Implement a lightweight ring buffer for UART. Port the project to an ESP32 using PlatformIO."
+            },
+            proofOfWork: [
+                { text: "GitHub repo with bare-metal firmware and documented registers", icon: "fa-github" },
+                { text: "Short demo video of UART output running in terminal", icon: "fa-video" },
+                { text: "LinkedIn post with code snippet and what you learned about registers", icon: "fa-linkedin" },
+                { text: "Logic analyser or oscilloscope capture of I2C/SPI waveforms", icon: "fa-wave-square" }
+            ],
+            mistakesToAvoid: [
+                "Staying in the Arduino ecosystem too long — it hides the hardware from you.",
+                "Using delay() for timing instead of hardware timers and interrupts.",
+                "Not understanding what HAL functions actually do at the register level.",
+                "Writing ISRs that are too long — ISRs must be fast and minimal."
+            ],
+            careerOutcomes: ["Embedded Systems Engineer", "Firmware Engineer", "IoT Developer", "Hardware Engineer", "Automotive Electronics Engineer"]
         },
         {
             id: 3,
             title: "Real-Time Operating Systems",
             shortTitle: "RTOS",
-            description: "When building complex systems, a simple super-loop isn't enough. Learn task scheduling, context switching, mutexes, semaphores, and message queues using FreeRTOS or Zephyr on an ARM Cortex-M microcontroller.",
+            skillLevel: "Integration",
+            description: "When building complex systems, a simple super-loop isn't enough. Learn task scheduling, context switching, mutexes, semaphores, and message queues using FreeRTOS or Zephyr on an ARM Cortex-M microcontroller. RTOS knowledge separates hobbyists from professional embedded engineers.",
+            coreFocus: ["Task creation and priority scheduling", "Context switching mechanics", "Mutexes and binary semaphores", "Message queues and event groups", "Stack overflow detection", "Tickless idle and power modes", "Inter-task communication patterns"],
+            completionOutcome: "You can architect a multi-task embedded application, identify concurrency bugs, and explain how the scheduler decides which task runs at any moment.",
             tools: [
-                { name: "Segger SystemView",       tag: "Tool", tagClass: "tool", url: "https://www.segger.com/products/development-tools/systemview/", icon: "fa-chart-line" },
-                { name: "Zephyr RTOS Environment", tag: "Tool", tagClass: "tool", url: "https://www.zephyrproject.org/",                                icon: "fa-wind" }
+                { name: "Segger SystemView", tag: "Tool", tagClass: "tool", url: "https://www.segger.com/products/development-tools/systemview/", icon: "fa-chart-line" },
+                { name: "Zephyr RTOS Environment", tag: "Tool", tagClass: "tool", url: "https://www.zephyrproject.org/", icon: "fa-wind" },
+                { name: "FreeRTOS + STM32", tag: "Tool", tagClass: "tool", url: "https://www.freertos.org/", icon: "fa-microchip" }
             ],
             resources: [
-                { name: "FreeRTOS — Quick Start Guide",                   tag: "Website", tagClass: "website", url: "https://www.freertos.org/Documentation/01-FreeRTOS-quick-start/01-Beginners-guide/00-Overview",                                                                               icon: "fa-globe" },
-                { name: "Mastering the FreeRTOS Kernel (Free PDF)",       tag: "PDF",     tagClass: "pdf",     url: "https://www.freertos.org/Documentation/02-Kernel/07-Books-and-manual/01-RTOS_book",                                                                                           icon: "fa-file-pdf" }
-            ]
+                { name: "FreeRTOS — Quick Start Guide", tag: "Website", tagClass: "website", url: "https://www.freertos.org/Documentation/01-FreeRTOS-quick-start/01-Beginners-guide/00-Overview", icon: "fa-globe" },
+                { name: "Mastering the FreeRTOS Kernel (Free PDF)", tag: "PDF", tagClass: "pdf", url: "https://www.freertos.org/Documentation/02-Kernel/07-Books-and-manual/01-RTOS_book", icon: "fa-file-pdf" },
+                { name: "Fastbit Embedded Brain Academy — FreeRTOS", tag: "Course", tagClass: "course", url: "https://www.udemy.com/course/mastering-rtos-hands-on-freertos-arduino-stm32fx/", icon: "fa-graduation-cap" },
+                { name: "Interrupt Blog — Interrupt (by Memfault)", tag: "Website", tagClass: "website", url: "https://interrupt.memfault.com/blog/", icon: "fa-globe" }
+            ],
+            checkpointProject: {
+                title: "Multi-Task Sensor Aggregator with Priority Escalation",
+                objective: "Build an RTOS-based firmware system with three concurrent tasks: a high-priority sensor interrupt handler, a medium-priority processing task that filters and logs data, and a low-priority display/communication task. Implement a mutex-protected shared buffer and demonstrate how task starvation can occur — then fix it.",
+                requiredSkills: ["FreeRTOS task creation", "Mutexes and semaphores", "Message queue usage", "Priority inversion awareness", "Stack size configuration"],
+                suggestedTools: ["STM32 + FreeRTOS via STM32CubeIDE", "Segger SystemView for visualisation", "UART for output"],
+                deliverables: [
+                    "Firmware repo with FreeRTOS task architecture",
+                    "SystemView trace screenshot showing task scheduling",
+                    "Task timing analysis document",
+                    "Demonstration of mutex protecting shared buffer",
+                    "README with architecture diagram"
+                ],
+                definitionOfDone: "Three tasks run concurrently without race conditions, you can show the scheduler trace in SystemView, and you can explain priority inversion and how your design avoids it.",
+                stretchGoal: "Port the project to Zephyr RTOS. Add watchdog timer recovery logic. Implement a tickless idle mode for power saving."
+            },
+            proofOfWork: [
+                { text: "GitHub repo with RTOS task architecture and comments", icon: "fa-github" },
+                { text: "SystemView task trace screenshot or recording", icon: "fa-camera" },
+                { text: "Written architecture doc — which task does what and why", icon: "fa-file-alt" },
+                { text: "LinkedIn post explaining priority inversion with a diagram", icon: "fa-linkedin" }
+            ],
+            mistakesToAvoid: [
+                "Allocating stack sizes arbitrarily — always profile with uxTaskGetStackHighWaterMark().",
+                "Accessing shared variables from multiple tasks without a mutex.",
+                "Creating too many tasks when a state machine in one task would suffice.",
+                "Ignoring priority inversion — it causes production failures that are hard to reproduce."
+            ],
+            careerOutcomes: ["Embedded Systems Engineer", "Firmware Engineer", "Safety-Critical Systems Engineer", "Automotive Firmware Developer", "RTOS Specialist"]
         },
         {
             id: 4,
             title: "Embedded Linux & Edge Computing",
             shortTitle: "Embedded Linux",
-            description: "Humanoids require massive computational power. Learn how the Linux kernel works, write device drivers, and build custom Linux images using Yocto or Buildroot. Utilize Python for scripting and move to Single Board Computers.",
+            skillLevel: "Real-World Systems",
+            description: "Advanced robotics and AI applications require far more compute than a microcontroller can provide. Learn how the Linux kernel interacts with hardware, write device drivers, build custom Linux images using Yocto or Buildroot, and use Python for high-level automation. Move to Single Board Computers and learn to deploy ML inference at the edge.",
+            coreFocus: ["Linux kernel architecture", "Device drivers and device tree", "Yocto/Buildroot for custom images", "Python scripting for hardware control", "SSH, cross-compilation, toolchains", "GPIO, I2C, SPI from Linux userspace", "Edge ML inference with ONNX or TFLite"],
+            completionOutcome: "You can build a custom Linux image, write a kernel module, interface Python code with hardware sensors, and deploy a lightweight ML model on a Raspberry Pi or Jetson Nano.",
             tools: [
-                { name: "QEMU",          tag: "Tool", tagClass: "tool", url: "https://www.qemu.org/",          icon: "fa-server" },
+                { name: "QEMU", tag: "Tool", tagClass: "tool", url: "https://www.qemu.org/", icon: "fa-server" },
                 { name: "Yocto Project", tag: "Tool", tagClass: "tool", url: "https://www.yoctoproject.org/", icon: "fa-cogs" },
-                { name: "Buildroot",     tag: "Tool", tagClass: "tool", url: "https://buildroot.org/",         icon: "fa-hammer" }
+                { name: "Buildroot", tag: "Tool", tagClass: "tool", url: "https://buildroot.org/", icon: "fa-hammer" },
+                { name: "Raspberry Pi 4 or 5", tag: "Hardware", tagClass: "hardware", url: "https://www.raspberrypi.com/", icon: "fa-microchip" },
+                { name: "NVIDIA Jetson Nano", tag: "Hardware", tagClass: "hardware", url: "https://developer.nvidia.com/embedded/jetson-nano", icon: "fa-microchip" }
             ],
             resources: [
-                { name: "Bootlin — Free Embedded Linux Training",         tag: "Course",  tagClass: "course",  url: "https://bootlin.com/training/",                                                                         icon: "fa-graduation-cap" },
-                { name: "Harvard CS50P — Introduction to Python",         tag: "Course",  tagClass: "course",  url: "https://pll.harvard.edu/course/cs50s-introduction-programming-python",                                 icon: "fa-graduation-cap" },
-                { name: "Raspberry Pi for Beginners",                     tag: "Video",   tagClass: "video",   url: "https://www.youtube.com/playlist?list=PLGs0VKk2DiYxdMjCJmcP6jt4Yw6OHK85O",                           icon: "fa-play-circle" },
-                { name: "Artificial Intelligence with Jetson Nano",       tag: "Video",   tagClass: "video",   url: "https://www.youtube.com/playlist?list=PLGs0VKk2DiYxP-ElZ7-QXIERFFPkOuP4_",                           icon: "fa-play-circle" },
-                { name: "Hardware & AI Extended Playlist",                tag: "Video",   tagClass: "video",   url: "https://www.youtube.com/playlist?list=PLGs0VKk2DiYypuwUUM2wxzcI9BJHK4Bfh",                           icon: "fa-play-circle" }
-            ]
+                { name: "Bootlin — Free Embedded Linux Training", tag: "Course", tagClass: "course", url: "https://bootlin.com/training/", icon: "fa-graduation-cap" },
+                { name: "Harvard CS50P — Introduction to Python", tag: "Course", tagClass: "course", url: "https://pll.harvard.edu/course/cs50s-introduction-programming-python", icon: "fa-graduation-cap" },
+                { name: "Raspberry Pi for Beginners", tag: "Video", tagClass: "video", url: "https://www.youtube.com/playlist?list=PLGs0VKk2DiYxdMjCJmcP6jt4Yw6OHK85O", icon: "fa-play-circle" },
+                { name: "Artificial Intelligence with Jetson Nano", tag: "Video", tagClass: "video", url: "https://www.youtube.com/playlist?list=PLGs0VKk2DiYxP-ElZ7-QXIERFFPkOuP4_", icon: "fa-play-circle" },
+                { name: "Hardware & AI Extended Playlist", tag: "Video", tagClass: "video", url: "https://www.youtube.com/playlist?list=PLGs0VKk2DiYypuwUUM2wxzcI9BJHK4Bfh", icon: "fa-play-circle" },
+                { name: "Linux Device Drivers (O'Reilly, free)", tag: "Website", tagClass: "website", url: "https://lwn.net/Kernel/LDD3/", icon: "fa-globe" }
+            ],
+            checkpointProject: {
+                title: "Edge Vision System with Hardware-Triggered Inference",
+                objective: "Build a system on a Raspberry Pi that captures camera frames, runs an object detection model (YOLO or MobileNet via TFLite), and uses GPIO output to trigger an external circuit (relay, LED array, or actuator) based on detection results. Add a systemd service so it runs on boot without user intervention.",
+                requiredSkills: ["Python with OpenCV and TFLite", "GPIO control from Linux userspace", "systemd service creation", "SSH remote deployment workflow", "Basic Linux filesystem and permissions"],
+                suggestedTools: ["Raspberry Pi 4", "Pi Camera v2", "TensorFlow Lite or ONNX Runtime", "Python 3 + OpenCV"],
+                deliverables: [
+                    "GitHub repo with Python inference script and systemd service file",
+                    "Demo video of detection triggering GPIO output",
+                    "Boot-time service verification screenshot",
+                    "Latency measurements per inference frame",
+                    "Wiring diagram for GPIO to external circuit"
+                ],
+                definitionOfDone: "The system boots, starts inference automatically via systemd, correctly triggers GPIO based on detection class, and you can SSH in and read live logs while it runs.",
+                stretchGoal: "Add a REST API endpoint to query current detection state. Migrate to NVIDIA Jetson Nano for GPU-accelerated inference. Build a Buildroot image that includes your application."
+            },
+            proofOfWork: [
+                { text: "GitHub repo with Python code and systemd config", icon: "fa-github" },
+                { text: "Demo video — system booting and running inference on camera feed", icon: "fa-video" },
+                { text: "Inference latency benchmarks in a README table", icon: "fa-table" },
+                { text: "LinkedIn post about edge ML deployment and what surprised you", icon: "fa-linkedin" }
+            ],
+            mistakesToAvoid: [
+                "Running ML inference on the CPU-only Pi without profiling — always measure latency first.",
+                "Not using systemd — production embedded Linux systems always need managed services.",
+                "Ignoring cross-compilation — building on the target device is slow and unsustainable.",
+                "Hard-coding file paths and passwords — use environment variables and config files."
+            ],
+            careerOutcomes: ["Embedded Linux Engineer", "IoT Developer", "Edge AI Engineer", "Platform Software Engineer", "Robotics Software Engineer"]
         },
         {
             id: 5,
             title: "Robotics Frameworks & Kinematics",
             shortTitle: "Robotics Frameworks",
-            description: "Transition from embedded systems to robotics. Master ROS/ROS 2 (Robot Operating System). Learn Forward/Inverse Kinematics using linear algebra, and Sensor Fusion combining data via Kalman Filters.",
+            skillLevel: "Integration",
+            description: "Transition from embedded systems to robotics. Master ROS 2 — the industry standard for robotics middleware. Understand Forward and Inverse Kinematics using linear algebra. Implement sensor fusion combining IMU, encoder, and LiDAR data via Kalman Filters. Move from single-board systems to complete robotic agents.",
+            coreFocus: ["ROS 2 nodes, topics, services, actions", "TF2 transform system", "URDF robot modelling", "Forward & Inverse Kinematics", "Kalman Filter and sensor fusion", "RViz and Gazebo simulation", "Navigation stack basics (Nav2)"],
+            completionOutcome: "You can model a robot in URDF, simulate it in Gazebo, implement basic navigation, and fuse sensor data into a reliable state estimate.",
             tools: [
-                { name: "Gazebo Sim",      tag: "Tool", tagClass: "tool", url: "https://gazebosim.org/",    icon: "fa-cube" },
-                { name: "Foxglove Studio", tag: "Tool", tagClass: "tool", url: "https://foxglove.dev/",     icon: "fa-chart-area" }
+                { name: "Gazebo Sim", tag: "Tool", tagClass: "tool", url: "https://gazebosim.org/", icon: "fa-cube" },
+                { name: "Foxglove Studio", tag: "Tool", tagClass: "tool", url: "https://foxglove.dev/", icon: "fa-chart-area" },
+                { name: "ROS 2 Humble (Ubuntu 22.04)", tag: "Tool", tagClass: "tool", url: "https://docs.ros.org/en/humble/", icon: "fa-robot" }
             ],
             resources: [
-                { name: "Open Robotics — Free ROS2 Training (YouTube)",      tag: "Video",   tagClass: "video",   url: "https://www.youtube.com/@openrobotics",                                                                     icon: "fa-play-circle" },
-                { name: "ROS Wiki — Official Tutorials",                      tag: "Website", tagClass: "website", url: "https://wiki.ros.org/ROS/Tutorials",                                                                        icon: "fa-globe" },
-                { name: "Robot Academy — Peter Corke",                        tag: "Course",  tagClass: "course",  url: "https://robotacademy.net.au/",                                                                              icon: "fa-graduation-cap" },
-                { name: "GetVM — Robotics Tutorials (Browser-Based)",         tag: "Website", tagClass: "website", url: "https://getvm.io/tutorials/category/robotics",                                                              icon: "fa-globe" },
-                { name: "MechaMind Labs",                                     tag: "Website", tagClass: "website", url: "https://www.mechamindlabs.com/youtube-tutorials",                                                          icon: "fa-globe" },
-                { name: "Resources for Robotics",                             tag: "Website", tagClass: "website", url: "https://www.resourcesforrobotics.com/",                                                                    icon: "fa-globe" },
-                { name: "Introduction to Robotics — Class Central",           tag: "Course",  tagClass: "course",  url: "https://www.classcentral.com/course/youtube-introduction-to-robotics-and-robots-for-beginners-tutorial-46791", icon: "fa-graduation-cap" },
-                { name: "FAA sUAS / Drone Safety Course",                     tag: "Course",  tagClass: "course",  url: "https://www.faasafety.gov/gslac/ALC/CourseLanding.aspx?cID=677",                                          icon: "fa-graduation-cap" },
-                { name: "Mithi's Robotics Coursework",                        tag: "GitHub",  tagClass: "github",  url: "https://github.com/mithi/robotics-coursework",                                                             icon: "fa-github" }
-            ]
+                { name: "Open Robotics — Free ROS 2 Training (YouTube)", tag: "Video", tagClass: "video", url: "https://www.youtube.com/@openrobotics", icon: "fa-play-circle" },
+                { name: "ROS Wiki — Official Tutorials", tag: "Website", tagClass: "website", url: "https://wiki.ros.org/ROS/Tutorials", icon: "fa-globe" },
+                { name: "Robot Academy — Peter Corke", tag: "Course", tagClass: "course", url: "https://robotacademy.net.au/", icon: "fa-graduation-cap" },
+                { name: "Articulated Robotics — ROS 2 from Scratch", tag: "Video", tagClass: "video", url: "https://www.youtube.com/@ArticulatedRobotics", icon: "fa-play-circle" },
+                { name: "Mithi's Robotics Coursework", tag: "GitHub", tagClass: "github", url: "https://github.com/mithi/robotics-coursework", icon: "fa-github" },
+                { name: "Resources for Robotics", tag: "Website", tagClass: "website", url: "https://www.resourcesforrobotics.com/", icon: "fa-globe" },
+                { name: "MechaMind Labs", tag: "Website", tagClass: "website", url: "https://www.mechamindlabs.com/youtube-tutorials", icon: "fa-globe" }
+            ],
+            checkpointProject: {
+                title: "Differential Drive Robot with Autonomous Navigation",
+                objective: "Model a differential drive robot in URDF, spawn it in Gazebo, implement wheel odometry, integrate a simulated LiDAR, and use Nav2 to autonomously navigate from point A to point B while avoiding obstacles. All in ROS 2.",
+                requiredSkills: ["URDF and joint modelling", "ROS 2 publisher/subscriber nodes", "TF2 transform broadcasting", "Nav2 configuration", "Gazebo plugin integration"],
+                suggestedTools: ["ROS 2 Humble", "Gazebo Fortress or Garden", "RViz2", "Python or C++ ROS 2 nodes"],
+                deliverables: [
+                    "GitHub repo with URDF, launch files, Nav2 config, and node code",
+                    "RViz visualisation screenshot of robot + costmaps",
+                    "Video of autonomous A-to-B navigation in Gazebo",
+                    "RQT graph showing node communication structure",
+                    "README with setup instructions"
+                ],
+                definitionOfDone: "The robot navigates a simulated environment autonomously, avoids obstacles, and you can explain the transform tree, costmap configuration, and how Nav2 generates paths.",
+                stretchGoal: "Add a simulated manipulator arm and implement pick-and-place in simulation. Port the stack to a physical robot platform."
+            },
+            proofOfWork: [
+                { text: "GitHub repo with full ROS 2 robot stack", icon: "fa-github" },
+                { text: "Gazebo simulation demo video", icon: "fa-video" },
+                { text: "RQT node graph screenshot", icon: "fa-camera" },
+                { text: "LinkedIn post explaining the Nav2 planning pipeline", icon: "fa-linkedin" }
+            ],
+            mistakesToAvoid: [
+                "Using ROS 1 when the industry has moved to ROS 2 — learn Humble or Iron.",
+                "Skipping URDF and working only with pre-built models — you need to understand robot description.",
+                "Ignoring the transform tree — TF2 errors are the most common ROS debugging headache.",
+                "Treating simulation as the final goal — always plan to move to hardware."
+            ],
+            careerOutcomes: ["Robotics Software Engineer", "Autonomous Systems Engineer", "ROS Developer", "Robotics Research Engineer", "Field Robotics Engineer"]
         },
         {
             id: 6,
             title: "Control Theory, SLAM & Drones",
             shortTitle: "Control Theory & SLAM",
-            description: "Humanoids are inherently unstable. Move beyond PID to learn LQR and Model Predictive Control (MPC). Study high-torque BLDC motors, harmonic drives, ZMP, dynamic walking algorithms, and autonomous drone systems.",
+            skillLevel: "Portfolio-Grade Builds",
+            description: "Humanoids and autonomous systems are inherently unstable. Move beyond PID to learn LQR and Model Predictive Control. Study SLAM (Simultaneous Localisation and Mapping) for autonomous navigation. Understand high-torque BLDC motor control, ESC tuning, and drone flight dynamics. Build or fly a real drone system.",
+            coreFocus: ["PID, LQR, MPC controller design", "SLAM algorithms — RTAB-Map, ORB-SLAM3", "Occupancy grid mapping", "BLDC motor theory and ESC configuration", "Drone kinematics and propulsion physics", "State estimation and observer design", "Trajectory planning"],
+            completionOutcome: "You can design a stable controller for a dynamic system, build and tune a working drone or mobile robot, and generate a real map from sensor data.",
             tools: [
-                { name: "Webots",                         tag: "Tool", tagClass: "tool", url: "https://cyberbotics.com/",                    icon: "fa-robot" },
-                { name: "Python Control Systems Library", tag: "Tool", tagClass: "tool", url: "https://python-control.readthedocs.io/",       icon: "fa-code" }
+                { name: "Webots", tag: "Tool", tagClass: "tool", url: "https://cyberbotics.com/", icon: "fa-robot" },
+                { name: "Python Control Systems Library", tag: "Tool", tagClass: "tool", url: "https://python-control.readthedocs.io/", icon: "fa-code" },
+                { name: "PX4 Autopilot", tag: "Tool", tagClass: "tool", url: "https://px4.io/", icon: "fa-plane" },
+                { name: "ArduPilot", tag: "Tool", tagClass: "tool", url: "https://ardupilot.org/", icon: "fa-helicopter" }
             ],
             resources: [
-                { name: "Kalman & Bayesian Filters in Python — Roger Labbe", tag: "GitHub", tagClass: "github", url: "https://github.com/rlabbe/Kalman-and-Bayesian-Filters-in-Python",   icon: "fa-github" },
-                { name: "Articulated Robotics — Nav2 Robot from Scratch",    tag: "Video",  tagClass: "video",  url: "https://www.youtube.com/@ArticulatedRobotics",                       icon: "fa-play-circle" },
-                { name: "Awesome Autonomous Drone Racing",                   tag: "GitHub", tagClass: "github", url: "https://github.com/aimarket/awesome-autonomous-drone-racing",        icon: "fa-github" },
-                { name: "Langostino — Swarm Drone Coordination",             tag: "GitHub", tagClass: "github", url: "https://github.com/swarm-subnet/Langostino",                         icon: "fa-github" },
-                { name: "Mercury Transforming Drone",                        tag: "GitHub", tagClass: "github", url: "https://github.com/L42ARO/Mercury-Transforming-Drone",               icon: "fa-github" }
-            ]
+                { name: "Kalman & Bayesian Filters in Python — Roger Labbe", tag: "GitHub", tagClass: "github", url: "https://github.com/rlabbe/Kalman-and-Bayesian-Filters-in-Python", icon: "fa-github" },
+                { name: "Articulated Robotics — Nav2 Robot from Scratch", tag: "Video", tagClass: "video", url: "https://www.youtube.com/@ArticulatedRobotics", icon: "fa-play-circle" },
+                { name: "Awesome Autonomous Drone Racing", tag: "GitHub", tagClass: "github", url: "https://github.com/aimarket/awesome-autonomous-drone-racing", icon: "fa-github" },
+                { name: "Control Bootcamp — Steve Brunton (UW)", tag: "Video", tagClass: "video", url: "https://www.youtube.com/playlist?list=PLMrJAkhIeNNR20Mz-VpzgfQs5zrYi085m", icon: "fa-play-circle" },
+                { name: "SLAM — Cyrill Stachniss (University of Bonn)", tag: "Video", tagClass: "video", url: "https://www.youtube.com/playlist?list=PLgnQpQtFTOGRM59sr3nSL8BmeMZR9GCIA", icon: "fa-play-circle" },
+                { name: "Mercury Transforming Drone", tag: "GitHub", tagClass: "github", url: "https://github.com/L42ARO/Mercury-Transforming-Drone", icon: "fa-github" }
+            ],
+            checkpointProject: {
+                title: "LiDAR SLAM Mapping Robot with Autonomous Return-to-Base",
+                objective: "Build or simulate a mobile robot that explores an unknown environment, builds an occupancy grid map using RTAB-Map or Cartographer, localises itself within the map, and autonomously returns to its starting position. Optionally mount a real LiDAR and run this on physical hardware.",
+                requiredSkills: ["SLAM pipeline setup in ROS 2", "LiDAR sensor integration", "Map-to-odom transform chain", "Nav2 localisation", "Loop closure concepts"],
+                suggestedTools: ["ROS 2 + RTAB-Map or Cartographer", "Gazebo or physical robot", "RPLiDAR or Hokuyo sensor"],
+                deliverables: [
+                    "GitHub repo with full SLAM + navigation stack",
+                    "Map screenshot of explored environment",
+                    "Video of autonomous return-to-base behaviour",
+                    "Loop closure event documentation",
+                    "System architecture block diagram"
+                ],
+                definitionOfDone: "Robot explores autonomously, generates a clean map, re-localises after being manually displaced, and returns to its start position. Map is saved and reloadable.",
+                stretchGoal: "Implement frontier-based autonomous exploration. Add semantic labelling to the map. Port to a real drone using PX4 and offboard control."
+            },
+            proofOfWork: [
+                { text: "GitHub repo with SLAM + Nav2 integration", icon: "fa-github" },
+                { text: "Map image of explored environment", icon: "fa-map" },
+                { text: "Demo video of autonomous exploration and return", icon: "fa-video" },
+                { text: "Block diagram of SLAM pipeline published on LinkedIn", icon: "fa-linkedin" }
+            ],
+            mistakesToAvoid: [
+                "Jumping to SLAM without solid ROS 2 TF2 and sensor integration skills.",
+                "Ignoring coordinate frame consistency — SLAM failures are usually TF bugs.",
+                "Tuning a controller by feel instead of using step response analysis.",
+                "Building a drone without understanding thrust-to-weight ratio and propeller physics."
+            ],
+            careerOutcomes: ["Robotics Engineer", "Autonomous Vehicle Engineer", "Drone Systems Engineer", "Control Systems Engineer", "Localisation & Mapping Engineer"]
         },
         {
             id: 7,
             title: "Humanoids & Advanced ML",
             shortTitle: "Humanoids & ML",
-            description: "The final frontier. Integrate reinforcement learning policies trained in massive parallel simulation, deploy dynamic walking algorithms via MPC, and handle complex rigid-body dynamics for full bipedal locomotion.",
+            skillLevel: "Career-Ready Proof",
+            description: "The frontier. Integrate reinforcement learning policies trained in massive parallel simulation, deploy dynamic walking algorithms via Model Predictive Control, and handle complex rigid-body dynamics for full bipedal locomotion. This phase produces engineers capable of contributing to the most technically demanding robotics problems in the industry.",
+            coreFocus: ["Bipedal dynamics — ZMP, foot placement", "Reinforcement learning for locomotion (PPO, SAC)", "Sim-to-real transfer techniques", "Whole-body control (WBC)", "Model Predictive Control for legged systems", "Rigid body dynamics — Pinocchio, Drake", "Hardware actuation — series elastic and BLDC joints"],
+            completionOutcome: "You can train a locomotion policy in Isaac Lab, analyse its failure modes, understand the hardware constraints it targets, and contribute to an open-source humanoid or legged robotics project.",
             tools: [
-                { name: "NVIDIA Isaac Lab",      tag: "Tool", tagClass: "tool", url: "https://isaac-sim.github.io/IsaacLab/",  icon: "fa-microchip" },
-                { name: "Drake",                 tag: "Tool", tagClass: "tool", url: "https://drake.mit.edu/",                 icon: "fa-cogs" },
-                { name: "MuJoCo Physics Engine", tag: "Tool", tagClass: "tool", url: "https://mujoco.org/",                   icon: "fa-atom" }
+                { name: "NVIDIA Isaac Lab", tag: "Tool", tagClass: "tool", url: "https://isaac-sim.github.io/IsaacLab/", icon: "fa-microchip" },
+                { name: "Drake", tag: "Tool", tagClass: "tool", url: "https://drake.mit.edu/", icon: "fa-cogs" },
+                { name: "MuJoCo Physics Engine", tag: "Tool", tagClass: "tool", url: "https://mujoco.org/", icon: "fa-atom" },
+                { name: "PyTorch + Stable-Baselines3", tag: "Tool", tagClass: "tool", url: "https://stable-baselines3.readthedocs.io/", icon: "fa-brain" }
             ],
             resources: [
-                { name: "Underactuated Robotics — Russ Tedrake (MIT)", tag: "Website", tagClass: "website", url: "https://underactuated.csail.mit.edu/",                         icon: "fa-book" },
-                { name: "Pinocchio — Rigid Body Dynamics Library",     tag: "GitHub",  tagClass: "github",  url: "https://github.com/stack-of-tasks/pinocchio",                 icon: "fa-github" },
-                { name: "OCS2 — Optimal Control for Legged Robots",   tag: "GitHub",  tagClass: "github",  url: "https://github.com/leggedrobotics/ocs2",                      icon: "fa-github" },
-                { name: "Humanoid-Gym — RobotEra",                    tag: "GitHub",  tagClass: "github",  url: "https://github.com/roboterax/humanoid-gym",                   icon: "fa-github" }
-            ]
+                { name: "Underactuated Robotics — Russ Tedrake (MIT)", tag: "Website", tagClass: "website", url: "https://underactuated.csail.mit.edu/", icon: "fa-book" },
+                { name: "Pinocchio — Rigid Body Dynamics Library", tag: "GitHub", tagClass: "github", url: "https://github.com/stack-of-tasks/pinocchio", icon: "fa-github" },
+                { name: "OCS2 — Optimal Control for Legged Robots", tag: "GitHub", tagClass: "github", url: "https://github.com/leggedrobotics/ocs2", icon: "fa-github" },
+                { name: "Humanoid-Gym — RobotEra", tag: "GitHub", tagClass: "github", url: "https://github.com/roboterax/humanoid-gym", icon: "fa-github" },
+                { name: "Deep RL Bootcamp — Berkeley (free)", tag: "Website", tagClass: "website", url: "https://sites.google.com/view/deep-rl-bootcamp/lectures", icon: "fa-globe" },
+                { name: "legged_gym — ETH Zurich", tag: "GitHub", tagClass: "github", url: "https://github.com/leggedrobotics/legged_gym", icon: "fa-github" }
+            ],
+            checkpointProject: {
+                title: "Sim-to-Real Locomotion Policy for a Quadruped",
+                objective: "Train a PPO locomotion policy for a quadruped robot in Isaac Lab or MuJoCo using a parallel simulation environment. Analyse the reward function design, implement domain randomisation for sim-to-real transfer, and evaluate the policy in a separate simulation environment. Document what fails and why.",
+                requiredSkills: ["Reinforcement learning — PPO/SAC basics", "MuJoCo or Isaac Lab setup", "Domain randomisation techniques", "Reward function engineering", "Policy evaluation and analysis"],
+                suggestedTools: ["Isaac Lab (NVIDIA GPU required) or MuJoCo (CPU)", "PyTorch + Stable-Baselines3 or RSL-RL", "Weights & Biases for training tracking"],
+                deliverables: [
+                    "GitHub repo with training script, environment config, and reward function",
+                    "Training curve plots — reward vs timestep",
+                    "Policy evaluation video in simulation",
+                    "Written failure analysis — what domain randomisations matter and why",
+                    "Comparison of stable vs unstable gait modes"
+                ],
+                definitionOfDone: "Policy trains to stable locomotion, you can explain every term in the reward function, you have tested at least 3 domain randomisation strategies, and you have a written analysis of sim-to-real gap challenges.",
+                stretchGoal: "Deploy the policy on a real quadruped (Unitree Go1/Go2) or contribute improvements to an existing open-source locomotion codebase. Implement whole-body control on top of the locomotion base."
+            },
+            proofOfWork: [
+                { text: "GitHub repo with full RL training pipeline", icon: "fa-github" },
+                { text: "Policy evaluation video in simulation", icon: "fa-video" },
+                { text: "Training curve plots and W&B run logs", icon: "fa-chart-line" },
+                { text: "Technical write-up on sim-to-real challenges — publish on Substack or LinkedIn", icon: "fa-pen" },
+                { text: "Contribution to an open-source legged robotics repo", icon: "fa-code-branch" }
+            ],
+            mistakesToAvoid: [
+                "Training without domain randomisation and expecting sim-to-real transfer to work.",
+                "Treating reward shaping as trial-and-error — understand the dynamics you are incentivising.",
+                "Skipping phases 1–6 and trying to start here — the foundation is not optional.",
+                "Never deploying to hardware — simulation alone does not make you an engineer."
+            ],
+            careerOutcomes: ["Humanoid Robotics Engineer", "Locomotion Engineer", "AI/ML Robotics Researcher", "Legged Systems Engineer", "Robotics Simulation Engineer", "Robot Learning Engineer"]
         }
     ];
 
@@ -1100,10 +1659,8 @@
     // ════════════════════════════════════════════════
     document.addEventListener('DOMContentLoaded', () => {
         checkedItems = JSON.parse(localStorage.getItem('roboticsProgress') || '{}');
-
         const saved = localStorage.getItem('theme') || 'dark';
         applyTheme(saved);
-
         initMegaMenu();
         showHome();
     });
@@ -1132,7 +1689,7 @@
                 <div class="menu-badge">${p.id}</div>
                 <div>
                     <div class="menu-text-title">${p.shortTitle}</div>
-                    <div class="menu-text-sub">Phase ${p.id} &nbsp;·&nbsp; ${p.tools.length + p.resources.length} items</div>
+                    <div class="menu-text-sub">Phase ${p.id} &nbsp;·&nbsp; ${p.skillLevel}</div>
                 </div>
             </div>
         `).join('');
@@ -1142,19 +1699,37 @@
         e.stopPropagation();
         const m = document.getElementById('megaMenu');
         const btn = document.getElementById('phasesNavBtn');
-        m.classList.toggle('open');
-        btn.classList.toggle('menu-open');
+        const bd = document.getElementById('megaMenuBackdrop');
+        const isOpen = m.classList.contains('open');
+        if (isOpen) {
+            closeMegaMenu();
+        } else {
+            m.classList.add('open');
+            btn.classList.add('menu-open');
+            if (bd) bd.style.display = 'block';
+        }
     }
 
     function closeMegaMenu() {
         document.getElementById('megaMenu').classList.remove('open');
         document.getElementById('phasesNavBtn').classList.remove('menu-open');
+        const bd = document.getElementById('megaMenuBackdrop');
+        if (bd) bd.style.display = 'none';
     }
 
     document.addEventListener('click', e => {
         const menu = document.getElementById('megaMenu');
-        if (menu && !e.target.closest('.nav-item')) closeMegaMenu();
+        if (menu && menu.classList.contains('open') && !e.target.closest('.nav-item') && !e.target.closest('.mega-menu')) {
+            closeMegaMenu();
+        }
     });
+
+    // ════════════════════════════════════════════════
+    //  SECTION COLLAPSE
+    // ════════════════════════════════════════════════
+    function toggleSection(el) {
+        el.closest('.section-card').classList.toggle('collapsed');
+    }
 
     // ════════════════════════════════════════════════
     //  NAVIGATION
@@ -1169,12 +1744,9 @@
     function showPhase(id) {
         if (currentPhase === id) return;
         currentPhase = id;
-
         if (pendingRender) { clearTimeout(pendingRender); pendingRender = null; }
-
         const container = document.getElementById('mainContainer');
         const existing  = container.querySelector('.phase-content');
-
         if (existing) {
             existing.classList.add('exiting');
             const target = id;
@@ -1232,12 +1804,120 @@
         `;
     }
 
+    function sectionCardHTML(iconClass, iconType, label, count, bodyHTML, defaultCollapsed) {
+        const collapsedClass = defaultCollapsed ? 'collapsed' : '';
+        return `
+            <div class="section-card ${collapsedClass}">
+                <div class="section-head" onclick="toggleSection(this)">
+                    <div class="section-icon ${iconClass}"><i class="fas ${iconType}"></i></div>
+                    <span class="section-label">${label}</span>
+                    <span class="section-count">${count}</span>
+                    <i class="fas fa-chevron-down section-toggle"></i>
+                </div>
+                <div class="section-body">${bodyHTML}</div>
+            </div>
+        `;
+    }
+
+    function checkpointProjectHTML(proj, phaseId) {
+        const skills = proj.requiredSkills.map(s => `<li>${s}</li>`).join('');
+        const tools  = proj.suggestedTools.map(t => `<li>${t}</li>`).join('');
+        const delivs = proj.deliverables.map(d => `<li>${d}</li>`).join('');
+
+        return `
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-num">CP</div>
+                    <div>
+                        <div class="project-title">${proj.title}</div>
+                        <div class="project-objective">${proj.objective}</div>
+                    </div>
+                </div>
+                <div class="project-grid">
+                    <div class="project-cell">
+                        <div class="project-cell-label">Required Skills</div>
+                        <div class="project-cell-content"><ul>${skills}</ul></div>
+                    </div>
+                    <div class="project-cell">
+                        <div class="project-cell-label">Suggested Tools</div>
+                        <div class="project-cell-content"><ul>${tools}</ul></div>
+                    </div>
+                    <div class="project-cell" style="grid-column: 1 / -1;">
+                        <div class="project-cell-label">Deliverables</div>
+                        <div class="project-cell-content"><ul>${delivs}</ul></div>
+                    </div>
+                </div>
+                <div class="project-dod">
+                    <span class="project-dod-label">Done when</span>
+                    <span class="project-dod-text">${proj.definitionOfDone}</span>
+                </div>
+                <div class="project-stretch">
+                    <div class="project-stretch-label">⚡ Stretch goal</div>
+                    <div class="project-stretch-content">${proj.stretchGoal}</div>
+                </div>
+            </div>
+        `;
+    }
+
+    function proofOfWorkHTML(proofs) {
+        return `
+            <div class="proof-grid">
+                ${proofs.map(p => `
+                    <div class="proof-item">
+                        <div class="proof-item-icon"><i class="fab ${p.icon}" onerror="this.className='fas fa-check'"></i></div>
+                        <div class="proof-item-text">${p.text}</div>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
+
+    function careerHTML(careers) {
+        const icons = {
+            'Hardware Engineer': 'fa-microchip',
+            'PCB Designer': 'fa-drafting-compass',
+            'Embedded Systems Engineer': 'fa-code',
+            'Firmware Engineer': 'fa-file-code',
+            'IoT Developer': 'fa-wifi',
+            'Robotics Engineer': 'fa-robot',
+            'Autonomous Systems Engineer': 'fa-car',
+            'Control Systems Engineer': 'fa-sliders-h',
+            'Drone Systems Engineer': 'fa-helicopter',
+            'Edge AI Engineer': 'fa-brain',
+            'Test & Validation Engineer': 'fa-vial',
+            'Power Electronics Engineer': 'fa-bolt',
+        };
+        return `
+            <div class="career-grid">
+                ${careers.map(c => `
+                    <div class="career-tag">
+                        <i class="fas ${icons[c] || 'fa-arrow-right'}"></i>
+                        ${c}
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
+
+    function mistakesHTML(mistakes) {
+        return `
+            <div class="mistake-list">
+                ${mistakes.map(m => `
+                    <div class="mistake-item">
+                        <div class="mistake-icon"><i class="fas fa-times"></i></div>
+                        <div class="mistake-text">${m}</div>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
+
     // ════════════════════════════════════════════════
     //  RENDER HOME
     // ════════════════════════════════════════════════
     function renderHome() {
-        const total     = phasesData.reduce((a, p) => a + p.resources.length, 0);
-        const toolCount = phasesData.reduce((a, p) => a + p.tools.length, 0);
+        const totalRes   = phasesData.reduce((a, p) => a + p.resources.length, 0);
+        const toolCount  = phasesData.reduce((a, p) => a + p.tools.length, 0);
 
         document.getElementById('mainContainer').innerHTML = `
             <div class="phase-content">
@@ -1248,8 +1928,8 @@
                     </div>
                     <h1 class="hero-title">From <em>V=IR</em><br>to Humanoid Robotics</h1>
                     <p class="hero-subtitle">
-                        Seven phases. Every resource curated, not collected.
-                        Track your progress as you go.
+                        Seven phases. Checkpoint projects. Proof of work. Career outcomes.
+                        Built for engineers who ship.
                     </p>
                     <div class="hero-stats">
                         <div class="hero-stat">
@@ -1257,7 +1937,11 @@
                             <div class="hero-stat-label">Phases</div>
                         </div>
                         <div class="hero-stat">
-                            <div class="hero-stat-value">${total}</div>
+                            <div class="hero-stat-value">${phasesData.length}</div>
+                            <div class="hero-stat-label">Projects</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-value">${totalRes}</div>
                             <div class="hero-stat-label">Resources</div>
                         </div>
                         <div class="hero-stat">
@@ -1277,7 +1961,7 @@
                         <div class="empty-state-title">Select a phase to begin</div>
                         <div class="empty-state-body">
                             Use the pills above or the Phases menu.<br>
-                            Check items off as you complete them — progress saves automatically.
+                            Check resources off as you complete them — progress saves automatically.
                         </div>
                     </div>
 
@@ -1286,13 +1970,20 @@
                             <div class="overview-card" onclick="showPhase(${p.id})">
                                 <div class="overview-card-head" style="background:var(--phase-${p.id});">
                                     <span class="overview-card-num">${p.id}</span>
-                                    <span class="overview-card-title">${p.shortTitle}</span>
+                                    <div>
+                                        <div class="overview-card-title">${p.shortTitle}</div>
+                                    </div>
                                 </div>
                                 <div class="overview-card-body">
-                                    <p class="overview-card-desc">${p.description.slice(0, 110)}…</p>
+                                    <p class="overview-card-desc">${p.description.slice(0, 120)}…</p>
                                     <div class="overview-card-meta">
                                         <span><i class="fas fa-tools"></i>&nbsp; ${p.tools.length} tools</span>
                                         <span><i class="fas fa-book"></i>&nbsp; ${p.resources.length} resources</span>
+                                        <span><i class="fas fa-layer-group"></i>&nbsp; ${p.skillLevel}</span>
+                                    </div>
+                                    <div class="overview-card-project">
+                                        <i class="fas fa-flag-checkered"></i>&nbsp;
+                                        <span>${p.checkpointProject.title}</span>
                                     </div>
                                 </div>
                             </div>
@@ -1320,37 +2011,46 @@
                 <nav class="phase-nav">${pillsHTML(id)}</nav>
 
                 <div class="content-area">
-                    <div class="phase-header">
-                        <div class="phase-eyebrow">Phase ${p.id} of ${phasesData.length}</div>
+                    <div class="phase-header" style="margin-bottom: 1.25rem;">
+                        <div class="phase-eyebrow">Phase ${p.id} of ${phasesData.length} &nbsp;·&nbsp; ${p.skillLevel}</div>
                         <div class="phase-heading">
                             <div class="phase-num-box">${p.id}</div>
                             <h1 class="phase-title-text">${p.title}</h1>
                         </div>
                     </div>
 
+                    <div class="phase-summary-strip">
+                        <div class="summary-chip">
+                            <div class="summary-chip-label">Level</div>
+                            <div class="summary-chip-value">${p.skillLevel}</div>
+                        </div>
+                        <div class="summary-chip">
+                            <div class="summary-chip-label">Resources</div>
+                            <div class="summary-chip-value">${p.tools.length + p.resources.length} items</div>
+                        </div>
+                        <div class="summary-chip">
+                            <div class="summary-chip-label">Career paths</div>
+                            <div class="summary-chip-value">${p.careerOutcomes.length} roles</div>
+                        </div>
+                    </div>
+
                     <div class="phase-desc">${p.description}</div>
 
-                    <div class="section-card">
-                        <div class="section-head">
-                            <div class="section-icon tools"><i class="fas fa-tools"></i></div>
-                            <span class="section-label">Required Tools & Software</span>
-                            <span class="section-count">${p.tools.length} items</span>
-                        </div>
-                        <div class="section-body">
-                            <div class="resource-list">${toolRows}</div>
+                    <div class="completion-banner">
+                        <div class="completion-banner-icon">🎯</div>
+                        <div>
+                            <div class="completion-banner-title">What you become after this phase</div>
+                            <div class="completion-banner-text">${p.completionOutcome}</div>
                         </div>
                     </div>
 
-                    <div class="section-card">
-                        <div class="section-head">
-                            <div class="section-icon resources"><i class="fas fa-book-open"></i></div>
-                            <span class="section-label">Learning Resources</span>
-                            <span class="section-count">${p.resources.length} items</span>
-                        </div>
-                        <div class="section-body">
-                            <div class="resource-list">${resRows}</div>
-                        </div>
-                    </div>
+                    ${sectionCardHTML('tools', 'fa-tools', 'Required Tools & Software', `${p.tools.length} items`, `<div class="resource-list">${toolRows}</div>`, false)}
+                    ${sectionCardHTML('resources', 'fa-book-open', 'Learning Resources', `${p.resources.length} items`, `<div class="resource-list">${resRows}</div>`, false)}
+                    ${sectionCardHTML('project', 'fa-flag-checkered', 'Checkpoint Project', 'Required', checkpointProjectHTML(p.checkpointProject, p.id), false)}
+                    ${sectionCardHTML('proof', 'fa-upload', 'Proof of Work', `${p.proofOfWork.length} items`, proofOfWorkHTML(p.proofOfWork), false)}
+                    ${sectionCardHTML('career', 'fa-briefcase', 'Career Outcomes', `${p.careerOutcomes.length} roles`, careerHTML(p.careerOutcomes), false)}
+                    ${sectionCardHTML('mistakes', 'fa-exclamation-triangle', 'Common Mistakes to Avoid', `${p.mistakesToAvoid.length}`, mistakesHTML(p.mistakesToAvoid), true)}
+
                 </div>
             </div>
         `;
